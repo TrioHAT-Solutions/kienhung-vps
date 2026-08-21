@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "WebFetch",
+      "mcp__Web_search__web_search"
+    ],
+    "deny": [
+      "Bash(npm run build)",
+      "Bash(npm run start)"
+    ]
+  },
+  "hooks": {
+    "PreToolCall": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '⚠️ Check ADRs in .claude/adr/ before editing'"
+          }
+        ]
+      }
+    ],
+    "PostToolCall": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '✅ File written — update docs if business logic changed'"
+          }
+        ]
+      }
+    ]
+  }
+}
