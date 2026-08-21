@@ -1,6 +1,6 @@
 # 05. LỘ TRÌNH TRIỂN KHAI MVP & KẾ HOẠCH PHÁT TRIỂN (MVP ROADMAP)
 
-> **Dự án**: Kien Hung VPS  
+> **Dự án**: TrioHAT-VPS  
 > **Tài liệu**: Kế hoạch chia kỳ phát triển (Phases), các mốc bàn giao (Milestones) và tiêu chí nghiệm thu cho giai đoạn MVP Frontend.
 
 ---
@@ -20,7 +20,7 @@ Mục tiêu trọng tâm của giai đoạn MVP là hoàn thiện một **Giao D
 
 ```mermaid
 gantt
-    title Lộ Trình Triển Khai Kien Hung VPS (Frontend MVP)
+    title Lộ Trình Triển Khai TrioHAT-VPS (Frontend MVP)
     dateFormat  YYYY-MM-DD
     section Giai đoạn 1: SDD Docs
     Đặc tả hệ thống & CLAUDE.md       :done,    des1, 2026-08-21, 1d
@@ -48,7 +48,7 @@ gantt
 
 ### Phase 1: Core Layout & Landing Showcase
 - [x] **Tài liệu đặc tả SDD**: Hoàn thành `CLAUDE.md`, `README.md`, và 5 tài liệu trong `docs/`.
-- [ ] **Root Layout**: Header với Logo Kiến Hưng Cloud/VPS, Navigation Links (Gói VPS, Ứng Dụng, Bảng Giá, Giải Pháp, Về Chúng Tôi), Nút CTA "Dùng Thử Ngay / Đặt Máy Chủ".
+- [ ] **Root Layout**: Header với Logo TrioHAT-VPS, Navigation Links (Gói VPS, Ứng Dụng, Bảng Giá, Giải Pháp, Về Chúng Tôi), Nút CTA "Dùng Thử Ngay / Đặt Máy Chủ".
 - [ ] **Footer**: Thông tin pháp lý (CÔNG TY TNHH THƯƠNG MẠI VÀ PHÂN PHỐI KIẾN HƯNG, MST: `3703344754`, Địa chỉ TP. HCM, Hotline, Chính sách dịch vụ, SLA cam kết).
 - [ ] **Hero Section**: Hiệu ứng Gradient Glow, Dynamic Badge "Hạ Tầng NVMe Thế Hệ Mới - Kích Hoạt Trong 60s", Tiêu đề ấn tượng, Nút tương tác chuyển đổi nhanh.
 - [ ] **Bento Grid Features**: Thẻ thông tin trực quan về Tốc độ NVMe Gen 4, Bảo vệ DDoS đa tầng, Uptime 99.9%, Hỗ trợ 24/7.

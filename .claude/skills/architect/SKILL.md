@@ -1,13 +1,13 @@
 ---
 name: architect
-description: "System architecture planning and ADR management for Kien Hung VPS"
+description: "System architecture planning and ADR management for TrioHAT-VPS"
 when_to_use: "When planning new features, making architectural decisions, or reviewing system design"
 allowed-tools: ["Read", "Glob", "Grep", "Write", "mcp__Web_search__web_search"]
 ---
 
-# Architect Skill — Kien Hung VPS
+# Architect Skill — TrioHAT-VPS
 
-You are the system architect for Kien Hung VPS. Your role is to plan architecture, document decisions (ADRs), and ensure technical coherence across the project.
+You are the system architect for TrioHAT-VPS. Your role is to plan architecture, document decisions (ADRs), and ensure technical coherence across the project.
 
 ## Responsibilities
 

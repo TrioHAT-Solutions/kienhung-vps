@@ -1,4 +1,4 @@
-# CLAUDE.md — Kien Hung VPS
+# CLAUDE.md — TrioHAT-VPS
 
 > **Service**: VPS Hosting + Managed Software Deployment
 > **Company**: CONG TY TNHH THUONG MAI VA PHAN PHOI KIEN HUNG (MST: 3703344754)
@@ -8,7 +8,7 @@
 
 ## Project Identity
 
-- **Name**: Kien Hung VPS (or Kien Hung Cloud)
+- **Name**: TrioHAT-VPS
 - **Model**: VPS Hosting + 1-Click App Stacks + Managed Deployment
 - **Target Market**: Vietnam (primary), international (secondary)
 - **Differentiator**: "Hạ Tầng Sẵn Sàng – Ứng Dụng Trong Tích Tắc" — VPS with pre-configured app stacks + Vietnamese-language support + VietQR instant payment
@@ -22,7 +22,9 @@
 | Language | TypeScript 5.1+ (strict) |
 | Styling | Tailwind CSS v4 (CSS-first, no tailwind.config.ts) |
 | UI Components | Shadcn UI (Radix primitives) + Lucide Icons |
-| Animations | `motion` (from `motion/react`) |
+| UI Extras | glasscn-ui (glassmorphism variants) + Magic UI (animated components) |
+| Animations | `motion` (from `motion/react`) — NOT `framer-motion` |
+| Network | `proxy.ts` — Next.js 16 network boundary (replaces middleware for Node.js runtime) |
 | State | Zustand v5 |
 | Forms | React Hook Form + Zod |
 | Payment (mock) | VietQR QuickLink (`img.vietqr.io`) |
@@ -51,7 +53,7 @@
 | Company | CONG TY TNHH THUONG MAI VA PHAN PHOI KIEN HUNG |
 | International | KIEN HUNG DISTRIBUTION AND TRADING COMPANY LIMITED |
 | Tax ID | 3703344754 |
-| Address | So 39/9, Duong Tran Hung Dao, Phuong Dong Hoa, TP. HCM |
+| Address | Số 39/9, Đường Trần Hưng Đạo, Phường Đông Hòa, TP. HCM |
 | Director | Do Kien Hung |
 | Hotline | 0976830911 |
 

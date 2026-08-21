@@ -1,14 +1,14 @@
 # 00. HIẾN PHÁP DỰ ÁN (PROJECT CONSTITUTION)
 
 > **Trạng thái**: Draft — Cần phê duyệt bởi Do Kien Hung
-> **Áp dụng**: Toàn bộ dự án Kien Hung VPS, mọi giai đoạn
+> **Áp dụng**: Toàn bộ dự án TrioHAT-VPS, mọi giai đoạn
 > **Thay đổi**: Chỉ được sửa khi có sự đồng thuận của cả chủ dự án và lead developer
 
 ---
 
 ## 1. Mục Đích
 
-Hiến pháp này là tài liệu **bất biến (immutable)**, làm nền tảng cho mọi quyết định thiết kế, phát triển và kinh doanh trong dự án Kien Hung VPS. Mọi spec, code, và quyết định khác phải tuân thủ tài liệu này.
+Hiến pháp này là tài liệu **bất biến (immutable)**, làm nền tảng cho mọi quyết định thiết kế, phát triển và kinh doanh trong dự án TrioHAT-VPS. Mọi spec, code, và quyết định khác phải tuân thủ tài liệu này.
 
 ## 2. Giá Trị Cốt Lõi (Core Values)
 
@@ -53,7 +53,7 @@ Hiến pháp này là tài liệu **bất biến (immutable)**, làm nền tản
 | # | Quy tắc | Lý do |
 |---|---------|-------|
 | T1 | Next.js 16.3+ với App Router | Latest stable, Turbopack, React 19.2 |
-| T2 | Tailwind CSS v4 CSS-first (không tailwind.config.ts) | Chuẩn mới,allax |
+| T2 | Tailwind CSS v4 CSS-first (không tailwind.config.ts) | Chuẩn mới, CSS-first |
 | T3 | TypeScript strict mode | Type safety toàn diện |
 | T4 | Shadcn UI + Radix primitives | UI component chuẩn, accessible |
 | T5 | `motion` (from `motion/react`) | Animation chuẩn React 19 |

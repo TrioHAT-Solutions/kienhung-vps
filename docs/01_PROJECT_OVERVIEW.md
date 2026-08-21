@@ -1,6 +1,6 @@
 # 01. TỔNG QUAN DỰ ÁN (PROJECT OVERVIEW)
 
-> **Tên dự án**: Kien Hung VPS (Hạ tầng Máy Chủ Ảo & Triển Khai Phần Mềm Trọn Gói)  
+> **Tên dự án**: TrioHAT-VPS (Hạ tầng Máy Chủ Ảo & Triển Khai Phần Mềm Trọn Gói)  
 > **Đơn vị chủ quản**: CÔNG TY TNHH THƯƠNG MẠI VÀ PHÂN PHỐI KIẾN HƯNG  
 > **Tài liệu**: Đặc tả tổng quan dự án, định vị thị trường, phân tích đối thủ & mô hình kinh doanh.
 
@@ -16,7 +16,7 @@
 - **Đại diện pháp luật**: Ông Đỗ Kiến Hưng – Giám đốc
 - **Hotline**: 0976830911
 
-### 1.2. Lý Do Hình Thành Dịch Vụ Kien Hung VPS
+### 1.2. Lý Do Hình Thành Dịch Vụ TrioHAT-VPS
 Trong kỷ nguyên chuyển đổi số và tự động hóa, nhu cầu sở hữu máy chủ riêng để chạy các ứng dụng kinh doanh, tự động hóa quy trình (n8n, Make), hệ thống thương mại điện tử, hosting website, chạy tool MMO/Marketing, và self-hosted các công cụ mã nguồn mở đang bùng nổ mạnh mẽ tại Việt Nam.
 
 Tuy nhiên, hầu hết các dịch vụ VPS hiện nay trên thị trường tồn tại rào cản lớn:
@@ -24,7 +24,7 @@ Tuy nhiên, hầu hết các dịch vụ VPS hiện nay trên thị trường t�
 2. **Nhà phát triển (Developers) & Startup nhỏ**: Tốn quá nhiều chi phí nếu thuê các nền tảng PaaS quốc tế (Vercel, Heroku, AWS) khi dự án lớn dần, nhưng lại mất thời gian nếu phải tự tay cấu hình máy chủ từ đầu mỗi lần dựng môi trường mới.
 3. **Các nhà cung cấp truyền thống**: Chỉ bàn giao VPS "trắng" (hệ điều hành rỗng) hoặc cài sẵn các Control Panel nặng nề, thiếu tính hiện đại và tính linh hoạt.
 
-**Kien Hung VPS** ra đời với sứ mệnh mang đến giải pháp **"Hạ Tầng Sẵn Sàng – Ứng Dụng Trong Tích Tắc"**, kết hợp hạ tầng máy chủ ảo tốc độ cao với các gói giải pháp phần mềm được đóng gói sẵn và dịch vụ kỹ thuật hỗ trợ tận nơi.
+**TrioHAT-VPS** ra đời với sứ mệnh mang đến giải pháp **"Hạ Tầng Sẵn Sàng – Ứng Dụng Trong Tích Tắc"**, kết hợp hạ tầng máy chủ ảo tốc độ cao với các gói giải pháp phần mềm được đóng gói sẵn và dịch vụ kỹ thuật hỗ trợ tận nơi.
 
 ---
 
@@ -32,7 +32,7 @@ Tuy nhiên, hầu hết các dịch vụ VPS hiện nay trên thị trường t�
 
 ### 2.1. Ma Trận So Sánh Các Nền Tảng Hàng Đầu
 
-| Tiêu chí | DigitalOcean / Vultr | Hetzner Cloud | Coolify / Dokploy (Self-hosted) | Nhà cung cấp VN (Vietnix, AZDIGI...) | **Kien Hung VPS (Mục tiêu)** |
+| Tiêu chí | DigitalOcean / Vultr | Hetzner Cloud | Coolify / Dokploy (Self-hosted) | Nhà cung cấp VN (Vietnix, AZDIGI...) | **TrioHAT-VPS (Mục tiêu)** |
 |:---|:---|:---|:---|:---|:---|
 | **Hiệu năng & Giá thành** | Tốt, thanh toán USD theo giờ | Cực rẻ/cấu hình cao, Data Center EU/US | Tùy thuộc VPS bạn gắn vào | Trung bình - Khá, gói theo tháng/năm | Tối ưu chi phí, phần cứng NVMe thế hệ mới |
 | **Hỗ trợ phần mềm đi kèm** | Có Marketplace (tự quản trị) | Không (VPS trắng) | Rất nhiều template mã nguồn mở | Chủ yếu DirectAdmin, cPanel, CyberPanel | **1-Click App Catalog + Dịch vụ Setup riêng** |
@@ -40,7 +40,7 @@ Tuy nhiên, hầu hết các dịch vụ VPS hiện nay trên thị trường t�
 | **Hỗ trợ & Ngôn ngữ tại VN**| Tiếng Anh, không hỗ trợ cài app hộ | Tiếng Anh, Support qua ticket chậm | Cộng đồng mở | Tiếng Việt qua hotline/ticket | **100% Tiếng Việt, CSKH đa kênh (Zalo/Hotline)** |
 | **Thanh toán nội địa** | Thẻ Visa/Mastercard (phí ngoại tệ) | Thẻ tín dụng quốc tế / PayPal | Không áp dụng (phần mềm miễn phí) | Chuyển khoản, Momo, VNPAY | **VietQR tự động kích hoạt 60s, Momo** |
 
-### 2.2. Insights Rút Ra Cho Kien Hung VPS
+### 2.2. Insights Rút Ra Cho TrioHAT-VPS
 1. **UX Tối Giản Hóa Quyết Định Mua Hàng**: Khách hàng thích trải nghiệm trực quan với thanh kéo trượt cấu hình (CPU/RAM/SSD) và hiển thị tức thời giá thành, không cần đọc qua 20 bảng so sánh phức tạp.
 2. **App Catalog Là Yếu Tố Khác Biệt Hóa (Differentiator)**: Thay vì chỉ bán "VPS 2 vCPU 4GB RAM", chúng tôi bán "Gói VPS Tối Ưu Cho n8n Automation", "Gói VPS Triển Khai Next.js Fullstack", "Gói VPS MMO Chống Checkpoint", "Gói WordPress Doanh Nghiệp Tốc Độ Cao".
 3. **Thanh Toán Không Chờ Đợi**: Tích hợp quét mã QR VietQR tĩnh/động để máy chủ tự động khởi tạo ngay sau khi nhận tiền, không phải chờ nhân viên duyệt tay.
@@ -67,7 +67,7 @@ Tuy nhiên, hầu hết các dịch vụ VPS hiện nay trên thị trường t�
 
 ```mermaid
 graph TD
-    A[Khách Hàng Kien Hung VPS] --> B{Lựa Chọn Dịch Vụ}
+    A[Khách Hàng TrioHAT-VPS] --> B{Lựa Chọn Dịch Vụ}
     B -->|Tùy chọn 1| C[Gói VPS Tiêu Chuẩn / Tùy Biến<br>Starter / Pro / Ultra / Enterprise]
     B -->|Tùy chọn 2| D[VPS + 1-Click App Marketplace<br>n8n, Next.js, WordPress, Docker...]
     B -->|Tùy chọn 3| E[Dịch Vụ Managed & Triển Khai Custom<br>Setup phần mềm theo yêu cầu SMBs]

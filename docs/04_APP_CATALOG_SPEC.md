@@ -1,7 +1,7 @@
 # 04. DANH MỤC PHẦN MỀM & ỨNG DỤNG ĐI KÈM (APP CATALOG SPEC)
 
-> **Dự án**: Kien Hung VPS  
-> **Tài liệu**: Đặc tả chi tiết danh mục ứng dụng 1-Click & Gói triển khai phần mềm đóng gói sẵn trên hạ tầng Kien Hung VPS.
+> **Dự án**: TrioHAT-VPS  
+> **Tài liệu**: Đặc tả chi tiết danh mục ứng dụng 1-Click & Gói triển khai phần mềm đóng gói sẵn trên hạ tầng TrioHAT-VPS.
 
 ---
 

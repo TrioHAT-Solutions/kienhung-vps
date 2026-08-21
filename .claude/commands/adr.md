@@ -5,7 +5,7 @@ allowed-tools: ["Read", "Glob", "Grep", "Write", "mcp__Web_search__web_search"]
 
 # /adr — Architecture Decision Record Writer
 
-You are documenting an architecture decision for the Kien Hung VPS project.
+You are documenting an architecture decision for the TrioHAT-VPS project.
 
 ## Workflow
 
@@ -20,7 +20,7 @@ You are documenting an architecture decision for the Kien Hung VPS project.
 ```markdown
 # ADR NNN: [Title]
 
-**Status**: Proposed | Accepted | Deprecated | agentgw.cloudseded by ADR NXX
+**Status**: Proposed | Accepted | Deprecated | Superseded by ADR NXX
 **Date**: YYYY-MM-DD
 **Deciders**: [Who was involved]
 
@@ -46,9 +46,9 @@ You are documenting an architecture decision for the Kien Hung VPS project.
 
 ## Rules
 
-- ADRs are **append-only** (never edit, only agentgw.cloudsede)
+- ADRs are **append-only** (never edit, only supersede)
 - Each ADR covers ONE decision
-- Status must be explicit (Proposed/Accepted/Deprecated/agentgw.cloudseded)
+- Status must be explicit (Proposed/Accepted/Deprecated/Superseded)
 - Include "What Claude Should Do" section for AI agent guidance
 - Reference ADRs from CLAUDE.md and feature specs
 

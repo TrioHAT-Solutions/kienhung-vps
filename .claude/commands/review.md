@@ -1,11 +1,11 @@
 ---
-description: "Code review checklist for Kien Hung VPS"
+description: "Code review checklist for TrioHAT-VPS"
 allowed-tools: ["Read", "Glob", "Grep"]
 ---
 
 # /review — Feature Code Review
 
-You are reviewing code for the Kien Hung VPS project against SDD specs and design standards.
+You are reviewing code for the TrioHAT-VPS project against SDD specs and design standards.
 
 ## Review Checklist
 

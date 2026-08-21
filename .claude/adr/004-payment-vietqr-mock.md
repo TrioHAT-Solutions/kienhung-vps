@@ -8,7 +8,7 @@
 
 ## Context
 
-Kien Hung VPS targets Vietnamese market where VietQR (NAPAS 247) is the dominant instant payment method. For MVP Frontend, we need a realistic checkout flow without actual payment processing.
+TrioHAT-VPS targets Vietnamese market where VietQR (NAPAS 247) is the dominant instant payment method. For MVP Frontend, we need a realistic checkout flow without actual payment processing.
 
 Requirements:
 - Generate VietQR codes dynamically (standard format)

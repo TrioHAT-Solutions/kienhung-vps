@@ -1,4 +1,4 @@
-# Kien Hung VPS — Nền Tảng Máy Chủ Ảo & Triển Khai Phần Mềm Trọn Gói
+# TrioHAT-VPS — Nền Tảng Máy Chủ Ảo & Triển Khai Phần Mềm Trọn Gói
 
 > **Thuộc**: CÔNG TY TNHH THƯƠNG MẠI VÀ PHÂN PHỐI KIẾN HƯNG (MST: 3703344754)
 > **Địa chỉ**: Số 39/9, Đường Trần Hưng Đạo, Phường Đông Hòa, TP. HCM, Việt Nam
@@ -14,9 +14,9 @@
 
 ## Giới Thiệu
 
-**Kien Hung VPS** là dịch vụ cho thuê và vận hành máy chủ ảo thế hệ mới, giải quyết triệt để rào cản kỹ thuật cho cá nhân, nhà phát triển (Developers), người làm MMO, Agency và doanh nghiệp vừa và nhỏ (SMBs) tại Việt Nam.
+**TrioHAT-VPS** là dịch vụ cho thuê và vận hành máy chủ ảo thế hệ mới, giải quyết triệt để rào cản kỹ thuật cho cá nhân, nhà phát triển (Developers), người làm MMO, Agency và doanh nghiệp vừa và nhỏ (SMBs) tại Việt Nam.
 
-Khác biệt với các nhà cung cấp VPS truyền thống chỉ bàn giao máy chủ "trắng", Kien Hung VPS mang đến mô hình **VPS + 1-Click App Stacks & Managed Deployment**:
+Khác biệt với các nhà cung cấp VPS truyền thống chỉ bàn giao máy chủ "trắng", TrioHAT-VPS mang đến mô hình **VPS + 1-Click App Stacks & Managed Deployment**:
 
 - ⚡ **Khởi tạo siêu tốc**: VPS hoạt động ngay sau khi thanh toán VietQR tự động.
 - 📦 **Kho ứng dụng 1-Click đa dạng**: Node.js/Next.js, Python, n8n Automation, WordPress Pro, Docker Engine, AI tools, VPN cá nhân, CyberPanel...
@@ -50,14 +50,29 @@ Khác biệt với các nhà cung cấp VPS truyền thống chỉ bàn giao má
 
 ---
 
-## Cài Đặt & Chạy
+## Quick Start
+
+**Prerequisites:**
+- Node.js 20+
+- npm
 
 ```bash
-cd kienhung-vps
+cd <project-folder>
 npm install
 npm run dev
 # Mở trình duyệt tại http://localhost:3000
 ```
+
+---
+
+## Kiến Trúc (Architecture)
+
+Dự án được thiết kế theo phương pháp **Spec-Driven Development (SDD)** — mọi tính năng bắt đầu từ tài liệu đặc tả trước khi viết code. Xem chi tiết tại thư mục [`docs/`](./docs/):
+
+- Frontend-only MVP với Next.js 16 App Router + Turbopack
+- Design System dark theme với glassmorphism, gradient effects
+- State management qua Zustand, forms qua React Hook Form + Zod
+- Animations qua `motion` (from `motion/react`)
 
 ---
 

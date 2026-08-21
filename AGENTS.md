@@ -44,7 +44,7 @@ export default async function Page({
 ```
 
 ### 1.4. Network Boundary (`proxy.ts`)
-Next.js 16 uses `src/proxy.ts` instead of `middleware.ts` for Node.js runtime. Handles headers, redirects, auth guards, reverse proxy routing.
+Next.js 16 uses `src/proxy.ts` instead of `middleware.ts` for Node.js runtime. Handles headers, redirects, auth guards, reverse proxy routing. Define it in `src/proxy.ts` and export route handlers for the paths you need.
 
 ### 1.5. View Transitions (React 19.2)
 Animate elements during navigation or within Transitions:
@@ -107,6 +107,8 @@ import { Activity } from 'react';
 }
 ```
 
+Use `@theme inline` for private/custom tokens. This ensures values are inlined at build time and avoids CSS variable leakage.
+
 ---
 
 ## 3. Motion (from `motion/react`)
@@ -124,6 +126,13 @@ import { motion, AnimatePresence } from 'motion/react';
   {content}
 </motion.div>
 ```
+
+---
+
+## 3.1. UI Libraries
+
+- **glasscn-ui**: Glassmorphism variants of Shadcn components (blurred backgrounds, frosted glass effects). Use for cards, modals, and overlays in the dark theme.
+- **Magic UI**: Pre-built animated components (butterflies, particles, text effects). Use sparingly for hero sections and visual accents.
 
 ---
 

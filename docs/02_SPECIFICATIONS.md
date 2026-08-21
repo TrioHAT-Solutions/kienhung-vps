@@ -1,6 +1,6 @@
 # 02. ĐẶC TẢ HỆ THỐNG & NGHIỆP VỤ (SYSTEM SPECIFICATIONS)
 
-> **Dự án**: Kien Hung VPS  
+> **Dự án**: TrioHAT-VPS  
 > **Tài liệu**: Đặc tả mô hình dữ liệu (Data Models), công thức tính giá (Pricing Engine), luồng đặt hàng (Checkout Flow) và quy trình cấp phát máy chủ (Server Provisioning Lifecycle).
 
 ---

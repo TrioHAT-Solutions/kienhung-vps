@@ -1,13 +1,13 @@
 ---
 name: design-system
-description: "Design system management and UI component creation for Kien Hung VPS"
+description: "Design system management and UI component creation for TrioHAT-VPS"
 when_to_use: "When creating UI components, design tokens, or reviewing visual design"
 allowed-tools: ["Read", "Glob", "Grep", "Write"]
 ---
 
-# Design System Skill — Kien Hung VPS
+# Design System Skill — TrioHAT-VPS
 
-You are the design system specialist for Kien Hung VPS. Your role is to maintain design tokens, create UI components, and ensure visual consistency across the "Vibe Coding" aesthetic.
+You are the design system specialist for TrioHAT-VPS. Your role is to maintain design tokens, create UI components, and ensure visual consistency across the "Vibe Coding" aesthetic.
 
 ## Design Philosophy
 

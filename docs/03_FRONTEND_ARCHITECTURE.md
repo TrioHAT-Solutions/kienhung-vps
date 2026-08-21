@@ -1,13 +1,13 @@
 # 03. KIẾN TRÚC FRONTEND & THIẾT KẾ GIAO DIỆN (FRONTEND ARCHITECTURE)
 
-> **Dự án**: Kien Hung VPS  
+> **Dự án**: TrioHAT-VPS  
 > **Tài liệu**: Kiến trúc ứng dụng Frontend, Hệ thống Design System "Vibe Coding", Quy chuẩn Component & Quản lý State.
 
 ---
 
 ## 1. Triết Lý Thiết Kế & Trải Nghiệm Người Dùng ("Vibe Coding" Aesthetics)
 
-Giao diện của **Kien Hung VPS** hướng tới đẳng cấp quốc tế, hiện đại, mang hơi thở của các sản phẩm công nghệ hàng đầu như Vercel, Supabase, Linear, Raycast và Railway.
+Giao diện của **TrioHAT-VPS** hướng tới đẳng cấp quốc tế, hiện đại, mang hơi thở của các sản phẩm công nghệ hàng đầu như Vercel, Supabase, Linear, Raycast và Railway.
 
 ### 1.1. Bảng Màu & Design Tokens (Color Palette - Tailwind CSS v4)
 - **Cấu hình CSS-First (Tailwind v4)**: Sử dụng `@import "tailwindcss";` kết hợp `@theme inline` với các biến CSS hiện đại (OKLCH / HSL).
@@ -23,7 +23,6 @@ Giao diện của **Kien Hung VPS** hướng tới đẳng cấp quốc tế, hi
 - **Thư viện chuyển động**: Sử dụng package mới nhất **`motion`** (import từ `motion/react`, tiền thân là `framer-motion`), tối ưu hoàn hảo cho React 19.
 - **Glow & Border Tracing**: Thẻ card có viền phát sáng nhẹ theo chuyển động chuột hoặc hiệu ứng pulse tinh tế.
 - **Dynamic Number Counter**: Khi người dùng kéo thanh trượt CPU/RAM, số tiền và thông số cấu hình nhảy mượt mà bằng transition toán học.
-- **Live Status Pulsing**: Đèn LED xanh trạng thái nhấp nháy tạo cảm giác hệ thống máy chủ đang hoạt động trực tiếp (Alive & Responsive).
 - **Live Status Pulsing**: Đèn LED xanh trạng thái nhấp nháy tạo cảm giác hệ thống máy chủ đang hoạt động trực tiếp (Alive & Responsive).
 
 ---
@@ -66,7 +65,14 @@ graph TD
     Page --> FAQ[Accordion FAQ & Legal Trust Signals]
 ```
 
-### 3.1. Các Component Trọng Tâm Của Giai Đoạn MVP
+### 3.1. Thư Viện UI Component Bổ Sung
+
+Bên cạnh Shadcn UI + Radix primitives (đã định nghĩa trong Hiến pháp), dự án sử dụng thêm:
+
+- **Glasscn-UI**: Các biến thể glassmorphism (backdrop-blur, frost, shimmer) được tùy chỉnh sẵn, tích hợp trực tiếp vào hệ thống design tokens CSS-first của Tailwind v4.
+- **Magic UI**: Thư viện 150+ animated components (particles, beam effects, globe, marquee, code comparison, zoomable image,_scrubber...) hỗ trợ hiệu ứng thị giác cao cấp cho Hero Section, Bento Grid và Dashboard Mock.
+
+### 3.2. Các Component Trọng Tâm Của Giai Đoạn MVP
 
 #### A. Component `InteractiveConfigurator` (`@/components/features/configurator/`)
 - Cho phép người dùng kéo 3 thanh trượt độc lập:
@@ -95,7 +101,7 @@ graph TD
 
 #### D. Component `LiveDashboardMock` (`@/components/features/dashboard-mock/`)
 - Giao diện giả lập trung thực của bảng quản trị VPS:
-  - Tên máy chủ: `vps-sg-prod-01.kienhung.cloud`.
+  - Tên máy chủ: `vps-sg-prod-01.example.com`.
   - IP Public: `103.142.26.88`.
   - Trạng thái: `Running 🟢 (Uptime: 14 ngày 6 giờ)`.
   - Đồng hồ đo CPU Load (% biểu đồ nhịp tim thời gian thực).

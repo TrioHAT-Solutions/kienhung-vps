@@ -8,7 +8,7 @@
 
 ## Context
 
-Kien Hung VPS MVP has several interactive features requiring client-side state:
+TrioHAT-VPS MVP has several interactive features requiring client-side state:
 - VPS Configurator: CPU/RAM/SSD sliders, datacenter selection, OS choice
 - App Catalog: category filters, selected app tracking
 - Checkout Flow: order summary, addon selections, billing cycle
@@ -17,7 +17,7 @@ Kien Hung VPS MVP has several interactive features requiring client-side state:
 Requirements:
 - Lightweight (bundle size matters for performance)
 - TypeScript-first with good DevTools
-- Easy to agentgw.cloud with React 19 Server Components
+- Easy to integrate with React 19 Server Components
 - No boilerplate ceremony
 
 ## Decision

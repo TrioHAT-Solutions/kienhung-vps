@@ -8,7 +8,7 @@
 
 ## Context
 
-Kien Hung VPS needs a modern frontend framework for its MVP. The project targets Vietnam's VPS hosting market with a "Vibe Coding" aesthetic (dark theme, micro-interactions, real-time configurator). Requirements:
+TrioHAT-VPS needs a modern frontend framework for its MVP. The project targets Vietnam's VPS hosting market with a "Vibe Coding" aesthetic (dark theme, micro-interactions, real-time configurator). Requirements:
 - Server-side rendering for SEO (landing page, pricing, app catalog)
 - Client-side interactivity (VPS configurator slider, real-time price calculator)
 - Modern developer experience for AI-assisted coding (Claude Code)

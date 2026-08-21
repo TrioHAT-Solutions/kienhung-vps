@@ -8,7 +8,7 @@
 
 ## Context
 
-Kien Hung VPS requires a dark-themed, glassmorphism-heavy design system ("Vibe Coding" aesthetic). The UI needs:
+TrioHAT-VPS requires a dark-themed, glassmorphism-heavy design system ("Vibe Coding" aesthetic). The UI needs:
 - Dark background (zinc-950) with gradient glow effects
 - Glassmorphism cards (`backdrop-blur-xl`, `border border-white/10`)
 - Accent colors: Cyan (speed), Violet (AI/automation), Emerald (status)

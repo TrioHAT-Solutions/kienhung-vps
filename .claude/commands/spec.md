@@ -1,11 +1,11 @@
 ---
-description: "Write a feature spec for Kien Hung VPS"
+description: "Write a feature spec for TrioHAT-VPS"
 allowed-tools: ["Read", "Glob", "Grep", "Write", "mcp__Web_search__web_search"]
 ---
 
 # /spec — Feature Spec Writer
 
-You are writing a feature specification for the Kien Hung VPS project.
+You are writing a feature specification for the TrioHAT-VPS project.
 
 ## Workflow
 
@@ -31,7 +31,7 @@ Save the spec as a markdown file in `docs/features/` with the feature name as fi
 
 ## Context
 
-- Project: Kien Hung VPS (VPS Hosting + Managed Software Deployment)
+- Project: TrioHAT-VPS (VPS Hosting + Managed Software Deployment)
 - Company: CONG TY TNHH THUONG MAI VA PHAN PHOI KIEN HUNG (MST: 3703344754)
 - Current Phase: MVP Frontend (no backend yet)
 - Design: Dark theme, glassmorphism, "Vibe Coding" aesthetic
