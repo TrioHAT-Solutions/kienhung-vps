@@ -59,3 +59,8 @@ venv/
 *.log
 *.tmp
 *.bak
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -20,12 +21,16 @@ export default function Home() {
               Hạ Tầng Sẵn Sàng – Ứng Dụng Trong Tích Tắc
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700">
-                Bắt Đầu Ngay
-              </Button>
-              <Button size="lg" variant="outline" className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10">
-                Xem Bảng Giá
-              </Button>
+              <Link href="/configure">
+                <Button size="lg" className="bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700">
+                  Bắt Đầu Ngay
+                </Button>
+              </Link>
+              <Link href="/pricing">
+                <Button size="lg" variant="outline" className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10">
+                  Xem Bảng Giá
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -112,26 +117,12 @@ export default function Home() {
         <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
           Chọn cấu hình VPS phù hợp và triển khai ứng dụng chỉ trong vài phút
         </p>
-        <Button size="lg" className="bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-600 hover:to-violet-600">
-          Tạo VPS Ngay
-        </Button>
+        <Link href="/configure">
+          <Button size="lg" className="bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-600 hover:to-violet-600">
+            Tạo VPS Ngay
+          </Button>
+        </Link>
       </section>
-
-      {/* Footer */}
-      <footer className="border-t border-white/10 py-8">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-4 md:mb-0">
-              <h3 className="text-lg font-semibold">TrioHAT-VPS</h3>
-              <p className="text-sm text-muted-foreground">CONG TY TNHH THUONG MAI VA PHAN PHOI KIEN HUNG</p>
-            </div>
-            <div className="text-sm text-muted-foreground text-center md:text-right">
-              <p>MST: 3703344754</p>
-              <p>Hotline: 0976830911</p>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

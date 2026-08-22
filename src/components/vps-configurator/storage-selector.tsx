@@ -5,7 +5,7 @@ import { Check, HardDrive } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-interface StorageOption {
+export interface StorageOption {
   id: string;
   size: number;
   type: "SSD" | "HDD";

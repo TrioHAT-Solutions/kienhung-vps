@@ -5,7 +5,7 @@ import { Check, Monitor } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-interface OsOption {
+export interface OsOption {
   id: string;
   name: string;
   version: string;

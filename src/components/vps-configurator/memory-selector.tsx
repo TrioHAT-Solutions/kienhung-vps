@@ -5,7 +5,7 @@ import { Check, HardDrive } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-interface MemoryOption {
+export interface MemoryOption {
   id: string;
   ram: number;
   type: string;

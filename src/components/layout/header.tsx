@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 const navItems = [
   { label: "Trang chủ", href: "/" },
-  { label: "Dịch vụ", href: "/services" },
+  { label: "Cấu hình VPS", href: "/configure" },
   { label: "Bảng giá", href: "/pricing" },
   { label: "Kho ứng dụng", href: "/apps" },
   { label: "Về chúng tôi", href: "/about" },

@@ -1,0 +1,20 @@
+import { defineConfig } from "@playwright/test";
+
+export default defineConfig({
+  testDir: "./e2e",
+  fullyParallel: false,
+  retries: 0,
+  timeout: 60_000,
+  use: {
+    baseURL: "http://localhost:3100",
+    trace: "retain-on-failure",
+    screenshot: "only-on-failure",
+  },
+  webServer: {
+    command: "npx next dev -p 3100",
+    url: "http://localhost:3100",
+    reuseExistingServer: true,
+    timeout: 120_000,
+  },
+  projects: [{ name: "chromium", use: { browserName: "chromium" } }],
+});

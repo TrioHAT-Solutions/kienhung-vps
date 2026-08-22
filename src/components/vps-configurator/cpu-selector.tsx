@@ -5,7 +5,7 @@ import { Check, Cpu } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-interface CpuOption {
+export interface CpuOption {
   id: string;
   cores: number;
   frequency: string;

@@ -1,16 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Plus, Shield, Database, Zap } from "lucide-react";
+import { Check, Plus, Shield, Database, Zap, type LucideIcon } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-interface AddOnOption {
+export interface AddOnOption {
   id: string;
   name: string;
   description: string;
   price: number;
-  icon: string;
+  icon: LucideIcon;
   features: string[];
   category: "backup" | "security" | "performance" | "monitoring";
 }

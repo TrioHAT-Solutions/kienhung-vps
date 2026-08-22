@@ -11,7 +11,7 @@ interface AppCategory {
   count: number;
 }
 
-const appCategories: AppCategory[] = [
+const DEFAULT_CATEGORIES: AppCategory[] = [
   { id: "all", name: "Tất cả", icon: "🔍", count: 50 },
   { id: "web", name: "Web Server", icon: "🌐", count: 15 },
   { id: "cms", name: "CMS", icon: "📝", count: 12 },
@@ -26,6 +26,7 @@ interface AppCategoryFilterProps {
   onCategoryChange: (category: string) => void;
   viewMode: "grid" | "list";
   onViewModeChange: (mode: "grid" | "list") => void;
+  categories?: AppCategory[];
 }
 
 export function AppCategoryFilter({
@@ -33,6 +34,7 @@ export function AppCategoryFilter({
   onCategoryChange,
   viewMode,
   onViewModeChange,
+  categories = DEFAULT_CATEGORIES,
 }: AppCategoryFilterProps) {
   return (
     <div className="space-y-4">
@@ -64,7 +66,7 @@ export function AppCategoryFilter({
 
       {/* Category Pills */}
       <div className="flex flex-wrap gap-2">
-        {appCategories.map((category) => (
+        {categories.map((category) => (
           <button
             key={category.id}
             onClick={() => onCategoryChange(category.id)}
@@ -87,7 +89,7 @@ export function AppCategoryFilter({
       {selectedCategory !== "all" && (
         <div className="text-sm text-muted-foreground bg-white/5 rounded-lg p-3">
           <span className="text-cyan-400 font-medium">
-            {appCategories.find(c => c.id === selectedCategory)?.count} ứng dụng
+            {categories.find(c => c.id === selectedCategory)?.count} ứng dụng
           </span>{" "}
           trong danh mục này
         </div>

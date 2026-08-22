@@ -1,5 +1,3 @@
-import { CartItem } from "./cart";
-
 // Pricing configuration
 export interface PricingConfig {
   basePrice: number;

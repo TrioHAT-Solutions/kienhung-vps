@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
-interface AppTemplate {
+export interface AppTemplate {
   id: string;
   name: string;
   description: string;
