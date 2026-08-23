@@ -1,9 +1,7 @@
 "use client";
 
 import { ArrowRight, CreditCard, Shield, Zap } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { formatPrice, formatPriceNumber } from "@/lib/pricing-engine";
+import { formatPrice } from "@/lib/pricing-engine";
 
 interface PriceSummaryProps {
   pricing: {
@@ -39,125 +37,116 @@ export function PriceSummary({
 }: PriceSummaryProps) {
   return (
     <div className="sticky top-24">
-      <Card className="border border-white/10 bg-white/5 backdrop-blur-sm">
-        <CardHeader>
-          <CardTitle className="text-lg">Chi tiết giá</CardTitle>
-        </CardHeader>
+      <div className="rounded-xl border border-white/8 bg-[#0f172a]/80 backdrop-blur-xl overflow-hidden">
+        <div className="px-5 py-4 border-b border-white/8">
+          <h3 className="text-lg font-semibold font-[family-name:var(--font-space-grotesk)] text-white">Chi tiết giá</h3>
+        </div>
 
-        <CardContent className="space-y-4">
-          {/* Price Breakdown */}
+        <div className="p-5 space-y-4">
           <div className="space-y-3">
             <div className="flex justify-between text-sm">
-              <span className="text-zinc-400">Giá cơ bản</span>
-              <span>{formatPrice(pricing.basePrice)}</span>
+              <span className="text-[#94a3b8]">Phần cứng cơ bản</span>
+              <span className="text-white font-[family-name:var(--font-fira-code)]">{formatPrice(pricing.basePrice)}</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-zinc-400">CPU</span>
-              <span>{formatPrice(pricing.cpuPrice)}</span>
+              <span className="text-[#94a3b8]">CPU</span>
+              <span className="text-white font-[family-name:var(--font-fira-code)]">{formatPrice(pricing.cpuPrice)}</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-zinc-400">RAM</span>
-              <span>{formatPrice(pricing.memoryPrice)}</span>
+              <span className="text-[#94a3b8]">RAM</span>
+              <span className="text-white font-[family-name:var(--font-fira-code)]">{formatPrice(pricing.memoryPrice)}</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-zinc-400">Lưu trữ</span>
-              <span>{formatPrice(pricing.storagePrice)}</span>
+              <span className="text-[#94a3b8]">NVMe Storage</span>
+              <span className="text-white font-[family-name:var(--font-fira-code)]">{formatPrice(pricing.storagePrice)}</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-zinc-400">Bandwidth</span>
-              <span>{formatPrice(pricing.bandwidthPrice)}</span>
+              <span className="text-[#94a3b8]">Bandwidth</span>
+              <span className="text-white font-[family-name:var(--font-fira-code)]">{formatPrice(pricing.bandwidthPrice)}</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-zinc-400">Vị trí</span>
-              <span>{formatPrice(pricing.locationPrice)}</span>
+              <span className="text-[#94a3b8]">Vị trí</span>
+              <span className="text-white font-[family-name:var(--font-fira-code)]">{formatPrice(pricing.locationPrice)}</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-zinc-400">Hệ điều hành</span>
-              <span>{formatPrice(pricing.osPrice)}</span>
+              <span className="text-[#94a3b8]">Hệ điều hành</span>
+              <span className="text-white font-[family-name:var(--font-fira-code)]">{formatPrice(pricing.osPrice)}</span>
             </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-zinc-400">Add-ons</span>
-              <span>{formatPrice(pricing.addOnsPrice)}</span>
-            </div>
+            {pricing.addOnsPrice > 0 && (
+              <div className="flex justify-between text-sm">
+                <span className="text-[#94a3b8]">Add-ons đã chọn</span>
+                <span className="text-white font-[family-name:var(--font-fira-code)]">+{formatPrice(pricing.addOnsPrice)}</span>
+              </div>
+            )}
           </div>
 
-          {/* Divider */}
-          <div className="h-px bg-white/10" />
+          <div className="h-px bg-white/8" />
 
-          {/* Subtotal */}
           <div className="flex justify-between">
-            <span className="text-zinc-400">Tổng / tháng</span>
-            <span className="font-semibold">{formatPrice(pricing.totalMonthly)}</span>
+            <span className="text-[#94a3b8]">Tổng / tháng</span>
+            <span className="font-semibold text-white font-[family-name:var(--font-fira-code)]">{formatPrice(pricing.totalMonthly)}</span>
           </div>
 
-          {/* Duration */}
           <div className="flex justify-between text-sm">
-            <span className="text-zinc-400">Thời hạn</span>
-            <span>{selectedDuration} tháng</span>
+            <span className="text-[#94a3b8]">Thời hạn</span>
+            <span className="text-white font-[family-name:var(--font-fira-code)]">{selectedDuration} tháng</span>
           </div>
 
-          {/* Discount */}
           {durationDiscount > 0 && (
             <div className="flex justify-between text-sm">
-              <span className="text-emerald-400">Giảm giá ({(durationDiscount * 100).toFixed(0)}%)</span>
-              <span className="text-emerald-400">-{formatPrice(totalBeforeDiscount * durationDiscount)}</span>
+              <span className="text-[#10b981]">Chu kỳ {selectedDuration} tháng (-{(durationDiscount * 100).toFixed(0)}%)</span>
+              <span className="text-[#10b981] font-[family-name:var(--font-fira-code)]">-{formatPrice(totalBeforeDiscount * durationDiscount)}</span>
             </div>
           )}
 
           {promoDiscount > 0 && (
             <div className="flex justify-between text-sm">
-              <span className="text-emerald-400">Mã giảm giá</span>
-              <span className="text-emerald-400">-{formatPrice(promoDiscount)}</span>
+              <span className="text-[#10b981]">Mã giảm giá</span>
+              <span className="text-[#10b981] font-[family-name:var(--font-fira-code)]">-{formatPrice(promoDiscount)}</span>
             </div>
           )}
 
-          {/* Divider */}
-          <div className="h-px bg-white/10" />
+          <div className="h-px bg-white/8" />
 
-          {/* Total */}
           <div className="flex justify-between items-center">
-            <span className="font-semibold">Tổng cộng</span>
+            <span className="font-semibold text-white">Tổng thanh toán</span>
             <div className="text-right">
-              <div className="text-2xl font-bold text-cyan-400">
+              <div className="text-2xl font-bold text-[#10b981] font-[family-name:var(--font-space-grotesk)]">
                 {formatPrice(totalAfterDiscount)}
               </div>
               {savings > 0 && (
-                <div className="text-xs text-emerald-400">
-                  Tiết kiệm {formatPrice(savings)}
+                <div className="text-xs text-[#10b981]">
+                  Tiết kiệm {formatPrice(savings)}/tháng
                 </div>
               )}
             </div>
           </div>
 
-          {/* CTA Button */}
-          <Button
-            size="lg"
-            className="w-full bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-600 hover:to-violet-600"
+          <button
+            className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-[#10b981] hover:bg-[#10b981]/90 text-[#022c22] font-semibold transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] cursor-pointer"
             onClick={onCheckout}
           >
             <CreditCard className="h-4 w-4" />
-            Thanh toán ngay
+            Tiến Hành Đặt Hàng
             <ArrowRight className="h-4 w-4" />
-          </Button>
+          </button>
 
-          {/* Trust Badges */}
           <div className="grid grid-cols-2 gap-4 mt-6">
-            <div className="flex items-center gap-2 text-xs text-zinc-500">
-              <Shield className="h-4 w-4 text-emerald-400" />
+            <div className="flex items-center gap-2 text-xs text-[#64748b]">
+              <Shield className="h-4 w-4 text-[#10b981]" />
               <span>SSL Secure</span>
             </div>
-            <div className="flex items-center gap-2 text-xs text-zinc-500">
-              <Zap className="h-4 w-4 text-yellow-400" />
+            <div className="flex items-center gap-2 text-xs text-[#64748b]">
+              <Zap className="h-4 w-4 text-[#06b6d4]" />
               <span>Instant Deploy</span>
             </div>
           </div>
 
-          {/* Money Back Guarantee */}
-          <div className="text-center text-xs text-zinc-500 mt-4">
+          <div className="text-center text-xs text-[#64748b] mt-4">
             Hoàn tiền trong 7 ngày đầu tiên
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }

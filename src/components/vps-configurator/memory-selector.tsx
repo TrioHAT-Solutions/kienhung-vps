@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import { Check, HardDrive } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 
 export interface MemoryOption {
   id: string;
@@ -62,47 +60,37 @@ export function MemorySelector({ selectedMemory, onMemorySelect }: MemorySelecto
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
-        <HardDrive className="h-5 w-5 text-violet-400" />
-        <h3 className="text-lg font-semibold">Bộ nhớ RAM</h3>
+        <HardDrive className="h-5 w-5 text-[#06b6d4]" />
+        <h3 className="text-lg font-semibold font-[family-name:var(--font-space-grotesk)] text-white">Bộ nhớ RAM</h3>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {memoryOptions.map((memory) => (
-          <Card
+          <button
             key={memory.id}
-            className={`cursor-pointer transition-all ${
+            className={`p-4 rounded-xl border text-left transition-all cursor-pointer ${
               selected === memory.id
-                ? "ring-2 ring-violet-500 bg-violet-500/10"
-                : "hover:bg-white/5"
+                ? "border-[#10b981]/60 bg-[#10b981]/10 shadow-[0_0_15px_rgba(16,185,129,0.15)]"
+                : "border-white/8 bg-[#0f172a]/80 hover:border-[#10b981]/20 hover:bg-[#1e293b]/80"
             }`}
             onClick={() => {
               setSelected(memory.id);
               onMemorySelect(memory);
             }}
           >
-            <CardHeader className="pb-3">
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-lg">{memory.ram} GB</CardTitle>
-                {selected === memory.id && (
-                  <Check className="h-5 w-5 text-violet-400" />
-                )}
-              </div>
-              <CardDescription>{memory.type}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground mb-3">
-                {memory.description}
-              </p>
-              <div className="flex items-center justify-between">
-                <span className="text-xl font-bold text-violet-400">
-                  {memory.price.toLocaleString("vi-VN")}đ
-                  <span className="text-sm font-normal text-muted-foreground">
-                    /tháng
-                  </span>
-                </span>
-              </div>
-            </CardContent>
-          </Card>
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-lg font-bold font-[family-name:var(--font-space-grotesk)] text-white">{memory.ram} GB</span>
+              {selected === memory.id && (
+                <Check className="h-5 w-5 text-[#10b981]" />
+              )}
+            </div>
+            <div className="text-xs text-[#94a3b8] font-[family-name:var(--font-fira-code)] mb-2">{memory.type}</div>
+            <p className="text-sm text-[#94a3b8] mb-3">{memory.description}</p>
+            <div className="text-xl font-bold text-[#10b981] font-[family-name:var(--font-space-grotesk)]">
+              {memory.price.toLocaleString("vi-VN")}đ
+              <span className="text-sm font-normal text-[#94a3b8]">/tháng</span>
+            </div>
+          </button>
         ))}
       </div>
     </div>

@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { RotateCw, Power, TerminalSquare, Camera, Copy, Check } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import type { PowerState } from "./power-state";
 
 interface ActionButtonsProps {
@@ -39,59 +38,55 @@ export function ActionButtons({
   return (
     <div className="space-y-3">
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <Button
-          variant="outline"
+        <button
           disabled={busy || !running}
           onClick={onRestart}
-          className="border-yellow-500/50 text-yellow-400 hover:bg-yellow-500/10 hover:text-yellow-300"
+          className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-[#f59e0b]/50 text-[#f59e0b] hover:bg-[#f59e0b]/10 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         >
           <RotateCw className={`h-4 w-4 ${busy ? "animate-spin" : ""}`} />
           Khởi động lại
-        </Button>
+        </button>
 
-        <Button
-          variant="outline"
+        <button
           disabled={busy}
           onClick={onTogglePower}
-          className={
+          className={`inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg border transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer ${
             running
-              ? "border-red-500/50 text-red-400 hover:bg-red-500/10 hover:text-red-300"
-              : "border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/10 hover:text-emerald-300"
-          }
+              ? "border-[#ef4444]/50 text-[#ef4444] hover:bg-[#ef4444]/10"
+              : "border-[#10b981]/50 text-[#10b981] hover:bg-[#10b981]/10"
+          }`}
         >
           <Power className="h-4 w-4" />
           {running ? "Tắt nguồn" : "Bật nguồn"}
-        </Button>
+        </button>
 
-        <Button
-          variant="outline"
+        <button
           onClick={() => setShowSSH(!showSSH)}
-          className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:text-cyan-300"
+          className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-[#06b6d4]/50 text-[#06b6d4] hover:bg-[#06b6d4]/10 transition-all cursor-pointer"
         >
           <TerminalSquare className="h-4 w-4" />
           SSH Info
-        </Button>
+        </button>
 
-        <Button
-          variant="outline"
+        <button
           disabled={!running}
           onClick={onSnapshot}
-          className="border-violet-500/50 text-violet-400 hover:bg-violet-500/10 hover:text-violet-300"
+          className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-[#8b5cf6]/50 text-[#8b5cf6] hover:bg-[#8b5cf6]/10 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         >
           <Camera className="h-4 w-4" />
           Tạo Snapshot
-        </Button>
+        </button>
       </div>
 
       {showSSH && (
-        <div className="bg-black/40 border border-white/10 rounded-lg p-3 font-mono text-sm flex items-center justify-between">
-          <code className="text-emerald-400">{sshCommand}</code>
+        <div className="bg-black/40 border border-white/5 rounded-lg p-3 font-[family-name:var(--font-fira-code)] text-sm flex items-center justify-between">
+          <code className="text-[#10b981]">{sshCommand}</code>
           <button
             onClick={handleCopy}
-            className="text-zinc-500 hover:text-cyan-400 transition-colors ml-3"
+            className="text-[#64748b] hover:text-[#06b6d4] transition-colors ml-3 cursor-pointer"
             aria-label="Copy SSH command"
           >
-            {copied ? <Check className="h-4 w-4 text-emerald-400" /> : <Copy className="h-4 w-4" />}
+            {copied ? <Check className="h-4 w-4 text-[#10b981]" /> : <Copy className="h-4 w-4" />}
           </button>
         </div>
       )}

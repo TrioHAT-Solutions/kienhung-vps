@@ -48,9 +48,8 @@ export default function DashboardPage() {
   const [ipAddress, setIpAddress] = useState(DEFAULT_IP);
 
   useEffect(() => {
-    setIpAddress(
-      `103.${Math.floor(100 + Math.random() * 150)}.${Math.floor(10 + Math.random() * 240)}.${Math.floor(10 + Math.random() * 240)}`
-    );
+    const randomIp = `103.${Math.floor(100 + Math.random() * 150)}.${Math.floor(10 + Math.random() * 240)}.${Math.floor(10 + Math.random() * 240)}`;
+    setIpAddress(randomIp);
     setActivities(seedActivity());
     setMetrics(generateMetricHistory(HISTORY_LENGTH));
   }, []);
@@ -92,7 +91,7 @@ export default function DashboardPage() {
   const handleTogglePower = () => {
     if (power === "running") {
       setPower("stopped");
-      setMetrics((prev) => prev.map((m) => ({ ...IDLE_METRIC })));
+      setMetrics((prev) => prev.map(() => ({ ...IDLE_METRIC })));
       pushActivity("power", "Server đã được tắt nguồn");
     } else if (power === "stopped") {
       setPower("restarting");
@@ -111,26 +110,25 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-zinc-950 via-slate-900 to-zinc-950 pb-20 lg:pb-8">
+    <div className="min-h-screen bg-[#080c14] pb-20 lg:pb-8">
       <div className="container mx-auto px-4 py-8 max-w-7xl">
         <MockBanner />
 
         <div className="mt-6 grid lg:grid-cols-[220px_1fr] gap-6">
-          {/* Sidebar - desktop */}
           <aside className="hidden lg:block">
             <div className="sticky top-24 space-y-1">
-              <div className="flex items-center gap-2 px-3 pb-4 text-sm font-semibold text-zinc-300">
-                <Server className="h-4 w-4 text-cyan-400" />
+              <div className="flex items-center gap-2 px-3 pb-4 text-sm font-semibold text-white font-[family-name:var(--font-space-grotesk)]">
+                <Server className="h-4 w-4 text-[#06b6d4]" />
                 Console
               </div>
               {SIDEBAR_ITEMS.map((item) => (
                 <button
                   key={item.label}
                   disabled={!item.active}
-                  className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${
+                  className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all cursor-pointer ${
                     item.active
-                      ? "bg-cyan-500/10 text-cyan-400 border border-cyan-500/30"
-                      : "text-zinc-500 hover:text-zinc-300 hover:bg-white/5 cursor-not-allowed"
+                      ? "bg-[#10b981]/10 text-[#10b981] border border-[#10b981]/30"
+                      : "text-[#64748b] hover:text-[#94a3b8] hover:bg-[#1e293b] cursor-not-allowed"
                   }`}
                 >
                   <item.icon className="h-4 w-4" />
@@ -140,7 +138,6 @@ export default function DashboardPage() {
             </div>
           </aside>
 
-          {/* Main */}
           <main className="space-y-6 min-w-0">
             <ServerStatus
               power={power}
@@ -170,19 +167,19 @@ export default function DashboardPage() {
             <div className="grid lg:grid-cols-2 gap-6">
               <ActivityFeed activities={activities} />
               <div className="space-y-4">
-                <h3 className="text-base font-semibold flex items-center gap-2 text-zinc-200">
-                  <Settings className="h-4 w-4 text-zinc-400" />
+                <h3 className="text-base font-semibold flex items-center gap-2 text-white font-[family-name:var(--font-space-grotesk)]">
+                  <Settings className="h-4 w-4 text-[#94a3b8]" />
                   Cấu hình hiện tại
                 </h3>
-                <div className="rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm p-5 grid grid-cols-2 gap-x-6 gap-y-3 text-sm">
-                  <span className="text-zinc-500">vCPU</span>
-                  <span className="text-white">{config.cpu?.cores ?? 2} Cores</span>
-                  <span className="text-zinc-500">RAM</span>
-                  <span className="text-white">{ramTotalGb} GB DDR4</span>
-                  <span className="text-zinc-500">NVMe</span>
-                  <span className="text-white">{storageTotalGb} GB</span>
-                  <span className="text-zinc-500">Bandwidth</span>
-                  <span className="text-white">{config.bandwidth?.label ?? "Không giới hạn"}</span>
+                <div className="rounded-xl border border-white/8 bg-[#0f172a]/80 backdrop-blur-xl p-5 grid grid-cols-2 gap-x-6 gap-y-3 text-sm">
+                  <span className="text-[#64748b]">vCPU</span>
+                  <span className="text-white font-[family-name:var(--font-fira-code)]">{config.cpu?.cores ?? 2} Cores</span>
+                  <span className="text-[#64748b]">RAM</span>
+                  <span className="text-white font-[family-name:var(--font-fira-code)]">{ramTotalGb} GB DDR4</span>
+                  <span className="text-[#64748b]">NVMe</span>
+                  <span className="text-white font-[family-name:var(--font-fira-code)]">{storageTotalGb} GB</span>
+                  <span className="text-[#64748b]">Bandwidth</span>
+                  <span className="text-white font-[family-name:var(--font-fira-code)]">{config.bandwidth?.label ?? "Không giới hạn"}</span>
                 </div>
               </div>
             </div>
@@ -190,15 +187,14 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Bottom nav - mobile */}
-      <nav className="lg:hidden fixed bottom-0 inset-x-0 z-40 border-t border-white/10 bg-zinc-950/95 backdrop-blur-xl">
+      <nav className="lg:hidden fixed bottom-0 inset-x-0 z-40 border-t border-white/8 bg-[#080c14]/95 backdrop-blur-xl">
         <div className="grid grid-cols-4">
           {SIDEBAR_ITEMS.map((item) => (
             <button
               key={item.label}
               disabled={!item.active}
               className={`flex flex-col items-center gap-1 py-3 text-xs ${
-                item.active ? "text-cyan-400" : "text-zinc-600"
+                item.active ? "text-[#10b981]" : "text-[#64748b]"
               }`}
             >
               <item.icon className="h-5 w-5" />

@@ -5,6 +5,9 @@ import { Check, Plus, Shield, Database, Zap, type LucideIcon } from "lucide-reac
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
+const CATEGORIES = ["all", "backup", "security", "performance", "monitoring"] as const;
+type Category = (typeof CATEGORIES)[number];
+
 export interface AddOnOption {
   id: string;
   name: string;
@@ -12,7 +15,7 @@ export interface AddOnOption {
   price: number;
   icon: LucideIcon;
   features: string[];
-  category: "backup" | "security" | "performance" | "monitoring";
+  category: Exclude<Category, "all">;
 }
 
 const addOnOptions: AddOnOption[] = [
@@ -78,7 +81,7 @@ interface AddOnsSelectorProps {
 }
 
 export function AddOnsSelector({ selectedAddOns, onAddOnToggle }: AddOnsSelectorProps) {
-  const [category, setCategory] = useState<"all" | "backup" | "security" | "performance" | "monitoring">("all");
+  const [category, setCategory] = useState<Category>("all");
 
   const filteredAddOns = category === "all"
     ? addOnOptions
@@ -95,21 +98,21 @@ export function AddOnsSelector({ selectedAddOns, onAddOnToggle }: AddOnsSelector
 
       {/* Category Filter */}
       <div className="flex flex-wrap gap-2">
-        {["all", "backup", "security", "performance", "monitoring"].map((cat) => (
+        {CATEGORIES.map((cat) => (
           <Button
             key={cat}
             variant={category === cat ? "default" : "outline"}
             size="sm"
-            onClick={() => setCategory(cat as any)}
+            onClick={() => setCategory(cat)}
             className={category === cat
-              ? "bg-yellow-500 hover:bg-yellow-600"
-              : "border-yellow-500/50 text-yellow-400 hover:bg-yellow-500/10"
+              ? "bg-[#10b981] hover:bg-[#10b981]/90 text-[#022c22] font-semibold"
+              : "border-white/8 text-[#94a3b8] hover:bg-white/5"
             }
           >
             {cat === "all" ? "Tất cả" :
-             cat === "backup" ? "Backup" :
+             cat === "backup" ? "Sao lưu" :
              cat === "security" ? "Bảo mật" :
-             cat === "performance" ? "Performance" : "Monitoring"}
+             cat === "performance" ? "Tối ưu tốc độ" : "Giám sát"}
           </Button>
         ))}
       </div>
@@ -121,37 +124,37 @@ export function AddOnsSelector({ selectedAddOns, onAddOnToggle }: AddOnsSelector
           return (
             <Card
               key={addOn.id}
-              className={`cursor-pointer transition-all ${
+              className={`cursor-pointer transition-all border-white/8 bg-[#0f172a]/80 backdrop-blur-xl ${
                 isSelected
-                  ? "ring-2 ring-yellow-500 bg-yellow-500/10"
-                  : "hover:bg-white/5"
+                  ? "ring-2 ring-[#10b981] bg-[#10b981]/10 border-[#10b981]/30"
+                  : "hover:border-[#10b981]/20 hover:bg-[#1e293b]/80"
               }`}
               onClick={() => onAddOnToggle(addOn)}
             >
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <addOn.icon className="h-5 w-5 text-yellow-400" />
-                    <CardTitle className="text-lg">{addOn.name}</CardTitle>
+                    <addOn.icon className="h-5 w-5 text-[#10b981]" />
+                    <CardTitle className="text-lg font-[family-name:var(--font-space-grotesk)]">{addOn.name}</CardTitle>
                   </div>
                   {isSelected && (
-                    <Check className="h-5 w-5 text-yellow-400" />
+                    <Check className="h-5 w-5 text-[#10b981]" />
                   )}
                 </div>
-                <CardDescription>{addOn.description}</CardDescription>
+                <CardDescription className="text-[#94a3b8]">{addOn.description}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
                   {addOn.features.map((feature, index) => (
                     <div key={index} className="flex items-center gap-2">
-                      <div className="h-1.5 w-1.5 rounded-full bg-yellow-400" />
-                      <span className="text-xs text-muted-foreground">{feature}</span>
+                      <div className="h-1.5 w-1.5 rounded-full bg-[#10b981]" />
+                      <span className="text-xs text-[#94a3b8]">{feature}</span>
                     </div>
                   ))}
                 </div>
                 {addOn.price > 0 && (
-                  <div className="mt-3 pt-3 border-t border-white/10">
-                    <span className="text-sm font-bold text-yellow-400">
+                  <div className="mt-3 pt-3 border-t border-white/8">
+                    <span className="text-sm font-bold text-[#10b981] font-[family-name:var(--font-fira-code)]">
                       +{addOn.price.toLocaleString("vi-VN")}đ/tháng
                     </span>
                   </div>

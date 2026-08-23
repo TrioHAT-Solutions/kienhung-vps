@@ -1,7 +1,6 @@
 "use client";
 
 import { Check } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 interface Step {
   id: string;
@@ -33,14 +32,13 @@ export function ProgressIndicator({ currentStep }: ProgressIndicatorProps) {
             <div key={step.id} className="flex items-center flex-1 last:flex-none">
               <div className="flex flex-col items-center">
                 <div
-                  className={cn(
-                    "w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300",
+                  className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 ${
                     isCompleted
-                      ? "bg-emerald-500 text-white"
+                      ? "bg-[#10b981] text-[#022c22]"
                       : isActive
-                      ? "bg-gradient-to-r from-cyan-500 to-violet-500 text-white shadow-lg shadow-cyan-500/25"
-                      : "bg-white/10 text-zinc-500"
-                  )}
+                      ? "bg-[#10b981] text-[#022c22] shadow-[0_0_15px_rgba(16,185,129,0.3)]"
+                      : "bg-[#1e293b] text-[#64748b] border border-white/8"
+                  }`}
                 >
                   {isCompleted ? (
                     <Check className="h-5 w-5" />
@@ -50,14 +48,13 @@ export function ProgressIndicator({ currentStep }: ProgressIndicatorProps) {
                 </div>
                 <div className="mt-2 text-center">
                   <div
-                    className={cn(
-                      "text-sm font-medium",
-                      isActive ? "text-white" : "text-zinc-500"
-                    )}
+                    className={`text-sm font-medium ${
+                      isActive ? "text-white" : "text-[#64748b]"
+                    }`}
                   >
                     {step.label}
                   </div>
-                  <div className="text-xs text-zinc-600 hidden sm:block">
+                  <div className="text-xs text-[#64748b] hidden sm:block">
                     {step.description}
                   </div>
                 </div>
@@ -65,14 +62,13 @@ export function ProgressIndicator({ currentStep }: ProgressIndicatorProps) {
               {index < steps.length - 1 && (
                 <div className="flex-1 mx-4 mt-[-20px]">
                   <div
-                    className={cn(
-                      "h-0.5 rounded-full transition-all duration-500",
+                    className={`h-0.5 rounded-full transition-all duration-500 ${
                       index < currentIndex
-                        ? "bg-emerald-500"
+                        ? "bg-[#10b981]"
                         : index === currentIndex
-                        ? "bg-gradient-to-r from-cyan-500 to-violet-500"
-                        : "bg-white/10"
-                    )}
+                        ? "bg-[#10b981]"
+                        : "bg-[#1e293b]"
+                    }`}
                   />
                 </div>
               )}

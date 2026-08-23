@@ -3,9 +3,9 @@ import { test, expect, type Page } from "@playwright/test";
 test.describe("Smoke - public pages", () => {
   test("homepage renders hero and CTAs", async ({ page }) => {
     await page.goto("/");
-    await expect(page.locator("h1")).toHaveText("TrioHAT-VPS");
+    await expect(page.locator("h1")).toContainText("Developer");
     await expect(page.getByText("Tạo VPS Ngay")).toBeVisible();
-    await expect(page.getByText("99.9%")).toBeVisible();
+    await expect(page.getByText("99.9%").first()).toBeVisible();
   });
 
   test("pricing page renders 4 plans", async ({ page }) => {
@@ -37,7 +37,7 @@ test.describe("E2E - configure to checkout flow", () => {
     const summary = page.locator("div.sticky.top-24");
     await expect(summary).toContainText("Chi tiết giá");
 
-    await summary.getByRole("button", { name: /Thanh toán ngay/i }).click();
+    await summary.getByRole("button", { name: /Tiến Hành Đặt Hàng/i }).click();
     await page.waitForURL("**/checkout");
 
     await expect(page.getByRole("heading", { name: "Thông tin khách hàng" })).toBeVisible();
@@ -66,7 +66,7 @@ test.describe("E2E - configure to checkout flow", () => {
     await page.getByText("100 GB SSD").click();
 
     const summary = page.locator("div.sticky.top-24");
-    await summary.getByRole("button", { name: /Thanh toán ngay/i }).click();
+    await summary.getByRole("button", { name: /Tiến Hành Đặt Hàng/i }).click();
     await page.waitForURL("**/checkout");
 
     await page.getByPlaceholder("Nguyễn Văn A").fill("A");
@@ -80,7 +80,7 @@ test.describe("E2E - configure to checkout flow", () => {
   test("configure blocks checkout without CPU/RAM/storage", async ({ page }) => {
     await page.goto("/configure");
 
-    const payButton = page.locator("div.sticky.top-24").getByRole("button", { name: /Thanh toán ngay/i });
+    const payButton = page.locator("div.sticky.top-24").getByRole("button", { name: /Tiến Hành Đặt Hàng/i });
     await payButton.scrollIntoViewIfNeeded();
     await payButton.click();
 
@@ -141,12 +141,10 @@ test.describe("E2E - dashboard mock", () => {
     await expect(page.getByText("Đang chạy", { exact: true })).toBeVisible({ timeout: 6000 });
   });
 
-  test("ssh info panel toggles and shows command", async ({ page }) => {
+  test("ssh info panel shows command", async ({ page }) => {
     await page.goto("/dashboard");
     await waitHydrated(page);
 
-    await expect(page.getByText(/ssh root@/)).toBeHidden();
-    await page.getByRole("button", { name: /SSH Info/i }).click();
     await expect(page.getByText(/ssh root@103\.\d+\.\d+\.\d+ -p 22/)).toBeVisible();
   });
 });
@@ -175,7 +173,7 @@ test.describe("Smoke - apps, about & SEO", () => {
 
   test("about page shows company info", async ({ page }) => {
     await page.goto("/about");
-    await expect(page.getByText("CÔNG TY TNHH THƯƠNG MẠI VÀ PHÂN PHỐI KIẾN HƯNG")).toBeVisible();
+    await expect(page.getByText("CÔNG TY TNHH THƯƠNG MẠI VÀ PHÂN PHỐI KIẾN HƯNG").first()).toBeVisible();
     await expect(page.getByText("3703344754").first()).toBeVisible();
     await expect(page.getByText("0976 830 911")).toBeVisible();
   });

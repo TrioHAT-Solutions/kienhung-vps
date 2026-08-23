@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import { Check, HardDrive } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 
 export interface StorageOption {
   id: string;
@@ -68,49 +66,42 @@ export function StorageSelector({ selectedStorage, onStorageSelect }: StorageSel
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
-        <HardDrive className="h-5 w-5 text-emerald-400" />
-        <h3 className="text-lg font-semibold">Lưu trữ</h3>
+        <HardDrive className="h-5 w-5 text-[#06b6d4]" />
+        <h3 className="text-lg font-semibold font-[family-name:var(--font-space-grotesk)] text-white">Lưu trữ</h3>
+        <span className="px-2 py-0.5 rounded text-[10px] font-[family-name:var(--font-fira-code)] bg-[#06b6d4]/15 text-[#06b6d4] border border-[#06b6d4]/30">
+          NVMe PCIe 4.0 Read up to 7,000 MB/s
+        </span>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {storageOptions.map((storage) => (
-          <Card
+          <button
             key={storage.id}
-            className={`cursor-pointer transition-all ${
+            className={`p-4 rounded-xl border text-left transition-all cursor-pointer ${
               selected === storage.id
-                ? "ring-2 ring-emerald-500 bg-emerald-500/10"
-                : "hover:bg-white/5"
+                ? "border-[#10b981]/60 bg-[#10b981]/10 shadow-[0_0_15px_rgba(16,185,129,0.15)]"
+                : "border-white/8 bg-[#0f172a]/80 hover:border-[#10b981]/20 hover:bg-[#1e293b]/80"
             }`}
             onClick={() => {
               setSelected(storage.id);
               onStorageSelect(storage);
             }}
           >
-            <CardHeader className="pb-3">
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-lg">
-                  {storage.size} GB {storage.type}
-                </CardTitle>
-                {selected === storage.id && (
-                  <Check className="h-5 w-5 text-emerald-400" />
-                )}
-              </div>
-              <CardDescription>{storage.interface}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground mb-3">
-                {storage.description}
-              </p>
-              <div className="flex items-center justify-between">
-                <span className="text-xl font-bold text-emerald-400">
-                  {storage.price.toLocaleString("vi-VN")}đ
-                  <span className="text-sm font-normal text-muted-foreground">
-                    /tháng
-                  </span>
-                </span>
-              </div>
-            </CardContent>
-          </Card>
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-lg font-bold font-[family-name:var(--font-space-grotesk)] text-white">
+                {storage.size} GB {storage.type}
+              </span>
+              {selected === storage.id && (
+                <Check className="h-5 w-5 text-[#10b981]" />
+              )}
+            </div>
+            <div className="text-xs text-[#94a3b8] font-[family-name:var(--font-fira-code)] mb-2">{storage.interface}</div>
+            <p className="text-sm text-[#94a3b8] mb-3">{storage.description}</p>
+            <div className="text-xl font-bold text-[#10b981] font-[family-name:var(--font-space-grotesk)]">
+              {storage.price.toLocaleString("vi-VN")}đ
+              <span className="text-sm font-normal text-[#94a3b8]">/tháng</span>
+            </div>
+          </button>
         ))}
       </div>
     </div>

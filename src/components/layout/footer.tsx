@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Server, Globe, Mail, Phone, MapPin } from "lucide-react";
+import { Server, Globe, Mail, Phone, MapPin, Shield, FileText } from "lucide-react";
 
 const footerLinks = {
   services: [
@@ -23,45 +23,43 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-zinc-950/80 backdrop-blur-xl">
+    <footer className="border-t border-white/8 bg-[#080c14]/80 backdrop-blur-xl">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
           <div>
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-violet-500">
-                <Server className="h-6 w-6 text-white" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#10b981]">
+                <Server className="h-6 w-6 text-[#022c22]" />
               </div>
-              <span className="text-xl font-bold text-white">
-                TrioHAT<span className="text-cyan-400">-VPS</span>
+              <span className="text-xl font-bold font-[family-name:var(--font-space-grotesk)] text-white">
+                TrioHAT<span className="text-[#06b6d4]">-VPS</span>
               </span>
             </Link>
-            <p className="text-sm text-zinc-400 mb-4">
+            <p className="text-sm text-[#94a3b8] mb-4">
               Hạ Tầng Sẵn Sàng – Ứng Dụng Trong Tích Tắc
             </p>
-            <div className="space-y-2 text-sm text-zinc-400">
-              <p className="font-medium text-zinc-300">CONG TY TNHH THUONG MAI VA PHAN PHOI KIEN HUNG</p>
+            <div className="space-y-2 text-sm text-[#94a3b8]">
+              <p className="font-medium text-white font-[family-name:var(--font-space-grotesk)]">CÔNG TY TNHH THƯƠNG MẠI VÀ PHÂN PHỐI KIẾN HƯNG</p>
               <div className="flex items-center gap-2">
-                <MapPin className="h-4 w-4" />
-                <span>So 39/9, Duong Tran Hung Dao, Phuong Dong Hoa, TP. HCM</span>
+                <MapPin className="h-4 w-4 shrink-0" />
+                <span>Số 39/9, Đường Trần Hưng Đạo, P. Đông Hòa, TP. HCM</span>
               </div>
               <div className="flex items-center gap-2">
-                <Phone className="h-4 w-4" />
+                <Phone className="h-4 w-4 shrink-0" />
                 <a href="tel:0976830911" className="hover:text-white transition-colors">0976830911</a>
               </div>
-              <p className="text-xs">MST: 3703344754</p>
+              <p className="text-xs font-[family-name:var(--font-fira-code)]">MST: 3703344754</p>
             </div>
           </div>
 
-          {/* Services */}
           <div>
-            <h3 className="text-sm font-semibold text-white mb-4">Dich vu</h3>
+            <h3 className="text-sm font-semibold text-white mb-4 font-[family-name:var(--font-space-grotesk)]">Dịch vụ</h3>
             <ul className="space-y-2">
               {footerLinks.services.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-zinc-400 hover:text-white transition-colors"
+                    className="text-sm text-[#94a3b8] hover:text-white transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -70,15 +68,14 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Support */}
           <div>
-            <h3 className="text-sm font-semibold text-white mb-4">Ho tro</h3>
+            <h3 className="text-sm font-semibold text-white mb-4 font-[family-name:var(--font-space-grotesk)]">Hỗ trợ</h3>
             <ul className="space-y-2">
               {footerLinks.support.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-zinc-400 hover:text-white transition-colors"
+                    className="text-sm text-[#94a3b8] hover:text-white transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -87,15 +84,14 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Legal */}
           <div>
-            <h3 className="text-sm font-semibold text-white mb-4">Phap luat</h3>
+            <h3 className="text-sm font-semibold text-white mb-4 font-[family-name:var(--font-space-grotesk)]">Pháp luật</h3>
             <ul className="space-y-2">
               {footerLinks.legal.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-zinc-400 hover:text-white transition-colors"
+                    className="text-sm text-[#94a3b8] hover:text-white transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -103,22 +99,34 @@ export function Footer() {
               ))}
             </ul>
             <div className="mt-6 flex gap-4">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white transition-colors">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-[#94a3b8] hover:text-white transition-colors">
                 <Globe className="h-5 w-5" />
               </a>
-              <a href="mailto:info@triohat.com" className="text-zinc-400 hover:text-white transition-colors">
+              <a href="mailto:info@triohat.com" className="text-[#94a3b8] hover:text-white transition-colors">
                 <Mail className="h-5 w-5" />
               </a>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-zinc-500">
-            © 2026 TrioHAT-VPS. All rights reserved.
+        <div className="mt-8 pt-8 border-t border-white/8">
+          <div className="flex flex-wrap justify-center gap-4 mb-6">
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#1e293b] border border-white/8">
+              <Shield className="h-4 w-4 text-[#10b981]" />
+              <span className="text-xs text-[#94a3b8]">Datacenter Tier 3 VNPT / Viettel IDC</span>
+            </div>
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#1e293b] border border-white/8">
+              <FileText className="h-4 w-4 text-[#10b981]" />
+              <span className="text-xs text-[#94a3b8]">Hỗ trợ xuất hóa đơn VAT 100%</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 pt-8 border-t border-white/8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-xs text-[#64748b]">
+            © 2026 CÔNG TY TNHH THƯƠNG MẠI VÀ PHÂN PHỐI KIẾN HƯNG. All rights reserved.
           </p>
-          <p className="text-xs text-zinc-500">
+          <p className="text-xs text-[#64748b] font-[family-name:var(--font-fira-code)]">
             MST: 3703344754 | Hotline: 0976830911
           </p>
         </div>

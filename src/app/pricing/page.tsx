@@ -1,12 +1,9 @@
-import { Metadata } from "next";
-import { ArrowLeft, ArrowRight, Check, Server, Shield, Zap, Clock } from "lucide-react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Bảng giá - Kiến Hưng VPS",
-  description: "Bảng giá dịch vụ VPS Hosting tại Kiến Hưng - Giá rẻ, chất lượng cao, hỗ trợ 24/7",
-};
+import { useState } from "react";
+import { Zap, Check, ChevronDown, ChevronUp } from "lucide-react";
+import { PricingCardRefactored } from "@/components/pricing/pricing-card-refactored";
+import { FeatureComparisonTable } from "@/components/pricing/feature-comparison-table";
 
 const plans = [
   {
@@ -14,6 +11,7 @@ const plans = [
     name: "Starter",
     description: "Phù hợp cho blog và website nhỏ",
     price: 250000,
+    target: "Dành cho blog cá nhân, portfolio",
     features: [
       "2 vCPU Core",
       "2GB RAM DDR4",
@@ -29,6 +27,7 @@ const plans = [
     name: "Basic",
     description: "Phù hợp cho website doanh nghiệp nhỏ",
     price: 450000,
+    target: "Dành cho website doanh nghiệp nhỏ",
     features: [
       "4 vCPU Core",
       "4GB RAM DDR4",
@@ -45,6 +44,7 @@ const plans = [
     name: "Professional",
     description: "Phù hợp cho ứng dụng web và ecommerce",
     price: 750000,
+    target: "Dành cho ứng dụng Production & Web thương mại",
     features: [
       "6 vCPU Core",
       "8GB RAM DDR4",
@@ -63,6 +63,7 @@ const plans = [
     name: "Enterprise",
     description: "Phù hợp cho ứng dụng doanh nghiệp lớn",
     price: 1200000,
+    target: "Dành cho ứng dụng enterprise quy mô lớn",
     features: [
       "8 vCPU Core",
       "16GB RAM DDR4",
@@ -80,196 +81,141 @@ const plans = [
   },
 ];
 
+const faqs = [
+  {
+    question: "Tôi có thể nâng cấp VPS sau khi mua không?",
+    answer: "Có, bạn có thể nâng cấp cấu hình VPS bất cứ lúc nào. Hệ thống sẽ tự động áp dụng và chỉ tính phí chênh lệch theo tỷ lệ.",
+  },
+  {
+    question: "Tôi nhận được hỗ trợ kỹ thuật như thế nào?",
+    answer: "Bạn có thể liên hệ hỗ trợ qua ticket, email hoặc live chat. Đội ngũ kỹ thuật viên sẽ hỗ trợ 24/7 với thời gian phản hồi nhanh nhất.",
+  },
+  {
+    question: "Tôi có thể hủy dịch vụ và được hoàn tiền không?",
+    answer: "Có, chính sách hoàn tiền trong 7 ngày đầu tiên áp dụng cho tất cả khách hàng mới. Nếu không hài lòng, bạn sẽ được hoàn 100% chi phí.",
+  },
+  {
+    question: "Datacenter nằm ở đâu?",
+    answer: "Datacenter chính tại TP.HCM và Hà Nội. Ngoài ra còn có lựa chọn Singapore và Tokyo cho khách hàng quốc tế. Tất cả đều đạt chuẩn Tier 3.",
+  },
+];
+
 export default function PricingPage() {
+  const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const discountRate = 0.2;
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900">
-      {/* Header Section */}
+    <div className="min-h-screen bg-[#080c14]">
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 mb-6">
-            <Zap className="h-4 w-4 text-cyan-400" />
-            <span className="text-sm text-cyan-400 font-medium">Giá cạnh tranh nhất thị trường</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#10b981]/10 border border-[#10b981]/20 mb-6">
+            <Zap className="h-4 w-4 text-[#10b981]" />
+            <span className="text-sm text-[#10b981] font-medium">Giá cạnh tranh nhất thị trường</span>
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-cyan-400 via-violet-500 to-emerald-400 bg-clip-text text-transparent">
-              Bảng Giá
-            </span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-[family-name:var(--font-space-grotesk)] text-white">
+            Bảng Giá
           </h1>
 
-          <p className="text-xl text-zinc-400 max-w-2xl mx-auto mb-8">
+          <p className="text-xl text-[#94a3b8] max-w-2xl mx-auto mb-8">
             Chọn gói phù hợp với nhu cầu của bạn. Tất cả đều đi kèm với hỗ trợ kỹ thuật 24/7 và đảm bảo uptime 99.9%.
           </p>
 
-          <div className="flex items-center justify-center gap-4 text-sm text-zinc-500">
+          <div className="flex items-center justify-center gap-4 text-sm text-[#64748b] mb-8">
             <div className="flex items-center gap-2">
-              <Check className="h-4 w-4 text-emerald-400" />
+              <Check className="h-4 w-4 text-[#10b981]" />
               <span>Hoàn tiền 7 ngày</span>
             </div>
             <div className="flex items-center gap-2">
-              <Check className="h-4 w-4 text-emerald-400" />
+              <Check className="h-4 w-4 text-[#10b981]" />
               <span>Hủy bất cứ lúc nào</span>
             </div>
             <div className="flex items-center gap-2">
-              <Check className="h-4 w-4 text-emerald-400" />
+              <Check className="h-4 w-4 text-[#10b981]" />
               <span>Không phí ẩn</span>
             </div>
+          </div>
+
+          <div className="flex items-center justify-center gap-2 p-1 bg-[#1e293b] rounded-lg border border-white/8 w-fit mx-auto">
+            <button
+              onClick={() => setBillingCycle("monthly")}
+              className={`px-6 py-2 rounded-md text-sm font-medium transition-all cursor-pointer ${
+                billingCycle === "monthly"
+                  ? "bg-[#10b981] text-[#022c22]"
+                  : "text-[#94a3b8] hover:text-white"
+              }`}
+            >
+              Theo tháng
+            </button>
+            <button
+              onClick={() => setBillingCycle("yearly")}
+              className={`px-6 py-2 rounded-md text-sm font-medium transition-all cursor-pointer ${
+                billingCycle === "yearly"
+                  ? "bg-[#10b981] text-[#022c22]"
+                  : "text-[#94a3b8] hover:text-white"
+              }`}
+            >
+              Theo năm (Tiết kiệm 20%)
+            </button>
           </div>
         </div>
       </section>
 
-      {/* Pricing Cards */}
       <section className="pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {plans.map((plan) => (
-              <Card
+              <PricingCardRefactored
                 key={plan.id}
-                className={`relative ${
-                  plan.popular
-                    ? "border-2 border-cyan-500/50 bg-cyan-500/5"
-                    : "border border-white/10 bg-white/5"
-                } backdrop-blur-sm`}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <div className="px-4 py-1 bg-gradient-to-r from-cyan-500 to-violet-500 rounded-full text-sm font-medium text-white">
-                      Phổ biến nhất
-                    </div>
-                  </div>
-                )}
-
-                <CardHeader className={plan.popular ? "pt-8" : ""}>
-                  <CardTitle className="text-xl">{plan.name}</CardTitle>
-                  <CardDescription>{plan.description}</CardDescription>
-                </CardHeader>
-
-                <CardContent>
-                  <div className="mb-6">
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-4xl font-bold text-white">
-                        {plan.price.toLocaleString("vi-VN")}
-                      </span>
-                      <span className="text-zinc-500">đ/tháng</span>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3">
-                    {plan.features.map((feature, index) => (
-                      <div key={index} className="flex items-center gap-2">
-                        <Check className="h-4 w-4 text-emerald-400 flex-shrink-0" />
-                        <span className="text-sm text-zinc-300">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-
-                <CardFooter>
-                  <Button
-                    className={`w-full ${
-                      plan.popular
-                        ? "bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-600 hover:to-violet-600"
-                        : "bg-white/10 hover:bg-white/20"
-                    }`}
-                  >
-                    {plan.popular ? (
-                      <>
-                        Chọn ngay
-                        <ArrowRight className="h-4 w-4" />
-                      </>
-                    ) : (
-                      "Chọn gói"
-                    )}
-                  </Button>
-                </CardFooter>
-              </Card>
+                plan={plan}
+                billingCycle={billingCycle}
+                discountRate={discountRate}
+              />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-black/50">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#0f172a]/50">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            <span className="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">
-              Tất cả gói đều bao gồm
-            </span>
+          <h2 className="text-3xl font-bold text-center mb-12 font-[family-name:var(--font-space-grotesk)] text-white">
+            So sánh chi tiết các gói
           </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center mx-auto mb-4">
-                <Server className="h-6 w-6 text-cyan-400" />
-              </div>
-              <h3 className="font-semibold mb-2">Enterprise Hardware</h3>
-              <p className="text-sm text-zinc-500">Intel Xeon / AMD EPYC processor, DDR4 ECC RAM, NVMe SSD</p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-12 h-12 rounded-lg bg-violet-500/20 flex items-center justify-center mx-auto mb-4">
-                <Shield className="h-6 w-6 text-violet-400" />
-              </div>
-              <h3 className="font-semibold mb-2">DDoS Protection</h3>
-              <p className="text-sm text-zinc-500">Bảo vệ tự động khỏi tấn công DDoS, đảm bảo website luôn online</p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-12 h-12 rounded-lg bg-emerald-500/20 flex items-center justify-center mx-auto mb-4">
-                <Zap className="h-6 w-6 text-emerald-400" />
-              </div>
-              <h3 className="font-semibold mb-2">High Performance</h3>
-              <p className="text-sm text-zinc-500">SSD NVMe tốc độ cao, network 1Gbps, kết nối</p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-12 h-12 rounded-lg bg-orange-500/20 flex items-center justify-center mx-auto mb-4">
-                <Clock className="h-6 w-6 text-orange-400" />
-              </div>
-              <h3 className="font-semibold mb-2">24/7 Support</h3>
-              <p className="text-sm text-zinc-500">Hỗ trợ kỹ thuật chuyên nghiệp, giải quyết sự cố nhanh chóng</p>
-            </div>
-          </div>
+          <FeatureComparisonTable />
         </div>
       </section>
 
-      {/* FAQ Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            <span className="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">
-              Câu hỏi thường gặp
-            </span>
+          <h2 className="text-3xl font-bold text-center mb-12 font-[family-name:var(--font-space-grotesk)] text-white">
+            Câu hỏi thường gặp
           </h2>
 
-          <div className="space-y-6">
-            <div className="p-6 rounded-xl bg-white/5 border border-white/10">
-              <h3 className="font-semibold mb-2">Tôi có thể nâng cấp VPS sau khi mua không?</h3>
-              <p className="text-zinc-400 text-sm">
-                Có, bạn có thể nâng cấp cấu hình VPS bất cứ lúc nào. Hệ thống sẽ tự động áp dụng và chỉ tính phí chênh lệch.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-xl bg-white/5 border border-white/10">
-              <h3 className="font-semibold mb-2">Tôi nhận được hỗ trợ kỹ thuật như thế nào?</h3>
-              <p className="text-zinc-400 text-sm">
-                Bạn có thể liên hệ hỗ trợ qua ticket, email hoặc live chat. Đội ngũ kỹ thuật viên sẽ hỗ trợ 24/7.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-xl bg-white/5 border border-white/10">
-              <h3 className="font-semibold mb-2">Tôi có thể hủy dịch vụ và được hoàn tiền không?</h3>
-              <p className="text-zinc-400 text-sm">
-                Có, chính sách hoàn tiền trong 7 ngày đầu tiên áp dụng cho tất cả khách hàng mới.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-xl bg-white/5 border border-white/10">
-              <h3 className="font-semibold mb-2">Datacenter nằm ở đâu?</h3>
-              <p className="text-zinc-400 text-sm">
-                Datacenter chính tại TP.HCM và Hà Nội. Ngoài ra còn có lựa chọn Singapore và Tokyo cho khách hàng quốc tế.
-              </p>
-            </div>
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className="rounded-xl border border-white/8 bg-[#0f172a]/80 overflow-hidden"
+              >
+                <button
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  className="w-full flex items-center justify-between p-5 text-left cursor-pointer"
+                >
+                  <span className="font-semibold text-white">{faq.question}</span>
+                  {openFaq === index ? (
+                    <ChevronUp className="h-5 w-5 text-[#94a3b8] shrink-0" />
+                  ) : (
+                    <ChevronDown className="h-5 w-5 text-[#94a3b8] shrink-0" />
+                  )}
+                </button>
+                {openFaq === index && (
+                  <div className="px-5 pb-5 border-t border-white/5">
+                    <p className="text-[#94a3b8] text-sm pt-4">{faq.answer}</p>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>

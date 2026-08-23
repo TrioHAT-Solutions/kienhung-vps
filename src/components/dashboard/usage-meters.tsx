@@ -1,7 +1,6 @@
 "use client";
 
 import { Activity, Cpu, MemoryStick, HardDrive, ArrowDownToLine, ArrowUpFromLine } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { MetricPoint } from "@/data/mock-metrics";
 
 function MiniChart({ data, color, max }: { data: number[]; color: string; max: number }) {
@@ -26,6 +25,12 @@ function MiniChart({ data, color, max }: { data: number[]; color: string; max: n
   );
 }
 
+function getMeterColor(value: number): string {
+  if (value >= 85) return "#ef4444";
+  if (value >= 70) return "#f59e0b";
+  return "#10b981";
+}
+
 interface MeterProps {
   label: string;
   icon: React.ComponentType<{ className?: string }>;
@@ -36,36 +41,36 @@ interface MeterProps {
   chartMax?: number;
 }
 
-function Meter({ label, icon: Icon, value, unit, chartData, chartColor = "#22d3ee", chartMax = 100 }: MeterProps) {
+function Meter({ label, icon: Icon, value, unit, chartData, chartColor, chartMax = 100 }: MeterProps) {
+  const color = chartColor || getMeterColor(value);
+
   return (
-    <Card className="border border-white/10 bg-white/5 backdrop-blur-sm">
-      <CardContent className="pt-5 space-y-3">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 text-sm text-zinc-400">
-            <Icon className="h-4 w-4" />
-            {label}
-          </div>
-          <span className="text-lg font-bold font-mono text-white tabular-nums">
-            {value}
-            <span className="text-xs font-normal text-zinc-500 ml-1">{unit}</span>
-          </span>
+    <div className="rounded-xl border border-white/8 bg-[#0f172a]/80 backdrop-blur-xl p-5 space-y-3">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2 text-sm text-[#94a3b8]">
+          <Icon className="h-4 w-4" />
+          {label}
         </div>
-        <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
-          <div
-            className="h-full rounded-full transition-all duration-700"
-            style={{
-              width: `${Math.min(value / chartMax * 100, 100)}%`,
-              backgroundColor: chartColor,
-            }}
-          />
+        <span className="text-lg font-bold font-[family-name:var(--font-fira-code)] text-white tabular-nums">
+          {value}
+          <span className="text-xs font-normal text-[#64748b] ml-1">{unit}</span>
+        </span>
+      </div>
+      <div className="h-1.5 rounded-full bg-[#1e293b] overflow-hidden">
+        <div
+          className="h-full rounded-full transition-all duration-700"
+          style={{
+            width: `${Math.min(value / chartMax * 100, 100)}%`,
+            backgroundColor: color,
+          }}
+        />
+      </div>
+      {chartData && (
+        <div data-chart={label}>
+          <MiniChart data={chartData} color={color} max={chartMax} />
         </div>
-        {chartData && (
-          <div data-chart={label}>
-            <MiniChart data={chartData} color={chartColor} max={chartMax} />
-          </div>
-        )}
-      </CardContent>
-    </Card>
+      )}
+    </div>
   );
 }
 
@@ -93,7 +98,6 @@ export function UsageMeters({ metrics, running, storageUsedGb, storageTotalGb }:
           value={latest.cpu}
           unit="%"
           chartData={cpuSeries}
-          chartColor="#22d3ee"
         />
         <Meter
           label="RAM Usage"
@@ -101,70 +105,66 @@ export function UsageMeters({ metrics, running, storageUsedGb, storageTotalGb }:
           value={latest.ram}
           unit="%"
           chartData={ramSeries}
-          chartColor="#a78bfa"
         />
       </div>
 
-      <Card className="border border-white/10 bg-white/5 backdrop-blur-sm">
-        <CardContent className="pt-5 space-y-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 text-sm text-zinc-400">
-              <HardDrive className="h-4 w-4" />
-              Disk NVMe
-            </div>
-            <span className="text-sm font-mono text-white">
-              {storageUsedGb} GB <span className="text-zinc-500">/ {storageTotalGb} GB</span>
-            </span>
+      <div className="rounded-xl border border-white/8 bg-[#0f172a]/80 backdrop-blur-xl p-5 space-y-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2 text-sm text-[#94a3b8]">
+            <HardDrive className="h-4 w-4" />
+            Disk NVMe
           </div>
-          <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
-            <div
-              className="h-full rounded-full bg-emerald-400"
-              style={{ width: `${diskPercent}%` }}
-            />
+          <span className="text-sm font-[family-name:var(--font-fira-code)] text-white">
+            {storageUsedGb} GB <span className="text-[#64748b]">/ {storageTotalGb} GB</span>
+          </span>
+        </div>
+        <div className="h-1.5 rounded-full bg-[#1e293b] overflow-hidden">
+          <div
+            className="h-full rounded-full transition-all duration-700"
+            style={{
+              width: `${diskPercent}%`,
+              backgroundColor: getMeterColor(diskPercent),
+            }}
+          />
+        </div>
+        <div className="grid grid-cols-2 gap-4 text-xs">
+          <div className="flex items-center justify-between bg-[#1e293b]/50 rounded-lg px-3 py-2 border border-white/5">
+            <span className="text-[#64748b]">Đọc</span>
+            <span className="font-[family-name:var(--font-fira-code)] text-white">{running ? latest.diskRead : 0} MB/s</span>
           </div>
-          <div className="grid grid-cols-2 gap-4 text-xs">
-            <div className="flex items-center justify-between bg-black/30 rounded-lg px-3 py-2">
-              <span className="text-zinc-500">Đọc</span>
-              <span className="font-mono text-zinc-200">{running ? latest.diskRead : 0} MB/s</span>
-            </div>
-            <div className="flex items-center justify-between bg-black/30 rounded-lg px-3 py-2">
-              <span className="text-zinc-500">Ghi</span>
-              <span className="font-mono text-zinc-200">{running ? latest.diskWrite : 0} MB/s</span>
-            </div>
+          <div className="flex items-center justify-between bg-[#1e293b]/50 rounded-lg px-3 py-2 border border-white/5">
+            <span className="text-[#64748b]">Ghi</span>
+            <span className="font-[family-name:var(--font-fira-code)] text-white">{running ? latest.diskWrite : 0} MB/s</span>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
 
-      <Card className="border border-white/10 bg-white/5 backdrop-blur-sm">
-        <CardHeader className="pb-2 pt-5">
-          <CardTitle className="text-sm flex items-center gap-2 text-zinc-300">
-            <Activity className="h-4 w-4 text-orange-400" />
-            Network Traffic
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div>
-            <div className="flex items-center justify-between mb-1 text-xs">
-              <span className="flex items-center gap-1.5 text-zinc-500">
-                <ArrowDownToLine className="h-3.5 w-3.5 text-cyan-400" />
-                Inbound
-              </span>
-              <span className="font-mono text-zinc-200">{running ? latest.netIn : 0} Mbps</span>
-            </div>
-            <MiniChart data={netInSeries} color="#22d3ee" max={60} />
+      <div className="rounded-xl border border-white/8 bg-[#0f172a]/80 backdrop-blur-xl p-5 space-y-4">
+        <div className="flex items-center gap-2 text-sm text-[#94a3b8]">
+          <Activity className="h-4 w-4 text-[#f59e0b]" />
+          Network Traffic
+        </div>
+        <div>
+          <div className="flex items-center justify-between mb-1 text-xs">
+            <span className="flex items-center gap-1.5 text-[#64748b]">
+              <ArrowDownToLine className="h-3.5 w-3.5 text-[#06b6d4]" />
+              Inbound
+            </span>
+            <span className="font-[family-name:var(--font-fira-code)] text-white">{running ? latest.netIn : 0} Mbps</span>
           </div>
-          <div>
-            <div className="flex items-center justify-between mb-1 text-xs">
-              <span className="flex items-center gap-1.5 text-zinc-500">
-                <ArrowUpFromLine className="h-3.5 w-3.5 text-violet-400" />
-                Outbound
-              </span>
-              <span className="font-mono text-zinc-200">{running ? latest.netOut : 0} Mbps</span>
-            </div>
-            <MiniChart data={netOutSeries} color="#a78bfa" max={40} />
+          <MiniChart data={netInSeries} color="#06b6d4" max={60} />
+        </div>
+        <div>
+          <div className="flex items-center justify-between mb-1 text-xs">
+            <span className="flex items-center gap-1.5 text-[#64748b]">
+              <ArrowUpFromLine className="h-3.5 w-3.5 text-[#10b981]" />
+              Outbound
+            </span>
+            <span className="font-[family-name:var(--font-fira-code)] text-white">{running ? latest.netOut : 0} Mbps</span>
           </div>
-        </CardContent>
-      </Card>
+          <MiniChart data={netOutSeries} color="#10b981" max={40} />
+        </div>
+      </div>
     </div>
   );
 }

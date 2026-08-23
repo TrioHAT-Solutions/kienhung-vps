@@ -1,6 +1,4 @@
 "use client";
-
-import { useState } from "react";
 import { AppTemplate } from "./app-card";
 import { AppCard } from "./app-card";
 
@@ -12,7 +10,7 @@ interface AppListViewProps {
 
 export function AppListView({ apps, selectedApps, onSelectApp }: AppListViewProps) {
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
       {apps.map((app) => (
         <AppCard
           key={app.id}

@@ -2,7 +2,7 @@
 
 > **Service**: VPS Hosting + Managed Software Deployment
 > **Company**: CONG TY TNHH THUONG MAI VA PHAN PHOI KIEN HUNG (MST: 3703344754)
-> **Current Phase**: MVP Frontend (planning & specs only — no code yet)
+> **Current Phase**: UI/UX Refactor Release (Developer Cloud Platform Standard)
 
 ---
 
@@ -10,8 +10,9 @@
 
 - **Name**: TrioHAT-VPS
 - **Model**: VPS Hosting + 1-Click App Stacks + Managed Deployment
+- **Design Philosophy**: Developer-First Cloud Infrastructure (Railway/Supabase/Vercel standard)
 - **Target Market**: Vietnam (primary), international (secondary)
-- **Differentiator**: "Hạ Tầng Sẵn Sàng – Ứng Dụng Trong Tích Tắc" — VPS with pre-configured app stacks + Vietnamese-language support + VietQR instant payment
+- **Differentiator**: "Hạ Tầng Sẵn Sàng – Ứng Dụng Trong Tích Tắc" — VPS NVMe + Pre-configured App Stacks + Vietnamese Support + VietQR instant payment
 
 ## Tech Stack (MVP Frontend)
 
@@ -20,31 +21,39 @@
 | Framework | Next.js 16.3+ (App Router, Turbopack default) |
 | React | React 19.2 (Compiler stable, auto-memoization) |
 | Language | TypeScript 5.1+ (strict) |
-| Styling | Tailwind CSS v4 (CSS-first, no tailwind.config.ts) |
+| Styling | Tailwind CSS v4 (CSS-first tokens in `globals.css`) |
+| Typography | `Space Grotesk` (Headings) + `DM Sans` (Body) + `Fira Code` (Monospace) |
 | UI Components | Shadcn UI (Radix primitives) + Lucide Icons |
-| UI Extras | glasscn-ui (glassmorphism variants) + Magic UI (animated components) |
-| Animations | `motion` (from `motion/react`) — NOT `framer-motion` |
-| Network | `proxy.ts` — Next.js 16 network boundary (replaces middleware for Node.js runtime) |
+| Animations | `motion` (from `motion/react`) |
 | State | Zustand v5 |
 | Forms | React Hook Form + Zod |
 | Payment (mock) | VietQR QuickLink (`img.vietqr.io`) |
 
-## Coding Conventions
+## Coding & Design Conventions
 
 1. **Language split**: UI content in **Vietnamese**. Codebase (variables, types, comments, commits) in **English**.
-2. **Components**: Server Components by default. Client Components (`'use client'`) only for interactive elements.
-3. **Structure**: `@/components/ui/` for primitives, `@/components/features/` for feature components.
-4. **Type Safety**: No `any`. All types defined in `@/types/`.
-5. **Design**: Dark theme (zinc-950), accent colors (Cyan/Violet/Emerald), gradient effects, glassmorphism cards.
+2. **Design Standard**: Developer Dark Theme (`#080C14` root, `#0F172A` card, `#10B981` Emerald accent, `#06B6D4` Cyan accent).
+3. **No AI Gradients**: Avoid generic purple-to-blue gradient text and static bento cliches.
+4. **Interactive First**: Provide CLI simulator, sliders, 1-click copy feedback toast, live server provisioning animation.
+5. **Type Safety**: No `any`. All types defined in `@/types/` or component interfaces. All category arrays must use `as const`.
 
-## SDD Workflow (Spec-Driven Development)
+## SDD Workflow & Refactor Plan
 
-**Every feature starts with a spec. No code without a spec.**
+All implementation tasks for OpenCode / AI agents are organized in the [`refactor/`](./refactor/) directory:
 
-1. **Read Spec First**: Check `docs/` for relevant feature spec before writing any code.
-2. **Plan Before Code**: Use Plan Mode to design implementation approach.
-3. **Spec Updates**: If business logic or data models change, update the corresponding spec in `docs/`.
-4. **Visual Verification**: Responsive on Mobile/Tablet/Desktop. Pricing calculations must be pixel-perfect.
+```
+refactor/
+├── README.md                     # Execution guide for OpenCode
+├── 00_DESIGN_SYSTEM_TOKENS.md    # Design system tokens & UI/UX rules
+├── 01_TASK_FOUNDATION.md         # Task 1: Globals, Layout, Header, Footer
+├── 02_TASK_LANDING_HERO.md       # Task 2: Split Hero, CLI Simulator
+├── 03_TASK_VPS_CONFIGURATOR.md   # Task 3: Configurator, Sliders, Add-ons
+├── 04_TASK_APP_MARKETPLACE.md    # Task 4: 1-Click Apps, Drawer Modal
+├── 05_TASK_PRICING_MATRIX.md     # Task 5: Pricing Matrix, Annual Toggle
+├── 06_TASK_CHECKOUT_PROVISION.md # Task 6: VietQR, Copy Toast, Provisioning
+├── 07_TASK_DEVELOPER_DASHBOARD.md# Task 7: Console, Terminal Logs, Copy SSH
+└── 08_VERIFICATION_AND_E2E.md    # Task 8: TypeCheck, Build, Playwright E2E
+```
 
 ## Business Context (Legal)
 
@@ -56,51 +65,3 @@
 | Address | Số 39/9, Đường Trần Hưng Đạo, Phường Đông Hòa, TP. HCM |
 | Director | Do Kien Hung |
 | Hotline | 0976830911 |
-
-## Before Making Changes — Check ADRs First
-
-Read Architecture Decision Records in `.claude/adr/` before making technical decisions:
-
-| ADR | Decision |
-|-----|----------|
-| `.claude/adr/001-nextjs-16-framework.md` | Next.js 16.3+ as primary framework |
-| `.claude/adr/002-tailwind-v4-design-system.md` | Tailwind CSS v4 CSS-first design |
-| `.claude/adr/003-state-management-zustand.md` | Zustand v5 for client state |
-| `.claude/adr/004-payment-vietqr-mock.md` | VietQR payment mock for MVP |
-
-## Documentation Map
-
-```
-docs/
-├── 00_CONSTITUTION.md          # Project-wide rules (immutable)
-├── 01_PROJECT_OVERVIEW.md      # Market analysis, business model, legal
-├── 02_SPECIFICATIONS.md        # Data models, pricing engine, API specs
-├── 03_FRONTEND_ARCHITECTURE.md # Component hierarchy, design system, state
-├── 04_APP_CATALOG_SPEC.md      # 15+ app templates with stack details
-├── 05_MVP_ROADMAP.md           # Phase breakdown and deliverables
-└── features/                   # Per-feature specs (added as needed)
-
-.claude/
-├── adr/                        # Architecture Decision Records
-│   ├── 001-nextjs-16-framework.md
-│   ├── 002-tailwind-v4-design-system.md
-│   ├── 003-state-management-zustand.md
-│   └── 004-payment-vietqr-mock.md
-├── commands/                   # Custom slash commands
-│   ├── spec.md                 # /spec — Write feature spec
-│   ├── adr.md                  # /adr — Create ADR
-│   └── review.md               # /review — Code review
-├── skills/                     # Custom skills
-│   ├── architect/SKILL.md      # Architecture planning
-│   └── design-system/SKILL.md  # Design system management
-├── hooks/                      # Pre/post tool hooks
-└── memory/                     # Persistent memory
-```
-
-## Critical Rules
-
-- **Read ADRs first** — before making any technical decision
-- **No time-sensitive info in specs** (versions change — reference patterns, not numbers)
-- **Specs are the source of truth** — not CLAUDE.md, not AGENTS.md
-- **MVP scope = Frontend only** — backend integration is Phase 2
-- **All monetary values in VND** — never display USD on UI

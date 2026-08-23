@@ -85,7 +85,7 @@ export function calculateTotal(
     addOns?: { price: number }[];
   },
   durationMonths: number,
-  promoCode?: string
+  // promoCode?: string // unused placeholder for future implementation
 ): {
   monthlyPrice: number;
   durationDiscount: number;

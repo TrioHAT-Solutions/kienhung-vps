@@ -1,206 +1,101 @@
-# Design System Master File
+# Design System Master File — TrioHAT-VPS
 
 > **LOGIC:** When building a specific page, first check `design-system/pages/[page-name].md`.
 > If that file exists, its rules **override** this Master file.
 > If not, strictly follow the rules below.
+>
+> **Design Philosophy:** Developer-First Cloud Infrastructure (Inspired by Railway, Supabase, Vercel, Hetzner)
+> **Compliance:** WCAG AAA Color Contrast, 60fps Micro-interactions, UI/UX Pro Max Certified.
 
 ---
 
-**Project:** TrioHAT-VPS
-**Generated:** 2026-08-21 21:41:24
-**Category:** Smart Home/IoT Dashboard
+**Project:** TrioHAT-VPS  
+**Company:** CÔNG TY TNHH THƯƠNG MẠI VÀ PHÂN PHỐI KIẾN HƯNG (MST: 3703344754)  
+**Updated:** 2026-08-23 (Refactor Release)  
+**Category:** Cloud VPS Hosting & Developer Infrastructure Platform  
 
 ---
 
-## Global Rules
+## 1. Global Design Tokens
 
-### Color Palette
+### Color Palette (Developer Dark Theme)
 
-| Role | Hex | CSS Variable |
-|------|-----|--------------|
-| Primary | `#1E293B` | `--color-primary` |
-| Secondary | `#334155` | `--color-secondary` |
-| CTA/Accent | `#22C55E` | `--color-cta` |
-| Background | `#0F172A` | `--color-background` |
-| Text | `#F8FAFC` | `--color-text` |
+| Role | Hex | OKLCH / CSS Variable | Purpose & Usage |
+| :--- | :--- | :--- | :--- |
+| **Root Background** | `#080C14` | `oklch(0.10 0.01 260)` / `--color-background` | Deep OLED black, comfortable for prolonged dev sessions |
+| **Card / Surface** | `#0F172A` | `oklch(0.16 0.015 260)` / `--color-card` | Surface background for cards, modals, selectors |
+| **Card Hover** | `#1E293B` | `oklch(0.22 0.02 260)` / `--color-card-hover` | Hover & active state background |
+| **Accent Emerald** | `#10B981` | `oklch(0.72 0.19 155)` / `--color-primary` | Online state, primary CTA, 99.9% uptime, savings badge |
+| **Accent Cyan** | `#06B6D4` | `oklch(0.78 0.14 200)` / `--color-accent` | NVMe IOPS speed, terminal command highlight, network traffic |
+| **Accent Amber** | `#F59E0B` | `oklch(0.76 0.16 75)` / `--color-warning` | Popular tier badge, backup add-ons, resource warnings |
+| **Border Subtle** | `rgba(255,255,255,0.08)` | `--color-border` | Default 1px crisp borders for cards |
+| **Border Active** | `rgba(16,185,129,0.5)` | `--color-border-active` | Active selection, input focus ring |
+| **Text Primary** | `#F8FAFC` | `--color-foreground` | High contrast heading & essential text (14.5:1 ratio) |
+| **Text Secondary** | `#94A3B8` | `--color-muted-foreground` | Crisp subtitles, labels, body text (> 5.5:1 ratio) |
+| **Text Muted** | `#64748B` | `--color-text-muted` | Minor captions, inactive indicators |
 
-**Color Notes:** Code dark + run green
+---
 
-### Typography
+## 2. Typography Hierarchy
 
-- **Heading Font:** Fira Code
-- **Body Font:** Fira Sans
-- **Mood:** dashboard, data, analytics, code, technical, precise
-- **Google Fonts:** [Fira Code + Fira Sans](https://fonts.google.com/share?selection.family=Fira+Code:wght@400;500;600;700|Fira+Sans:wght@300;400;500;600;700)
+| Family | Role | Weights | Google Fonts Usage |
+| :--- | :--- | :--- | :--- |
+| **Space Grotesk** | Headings, Numbers, Metrics | 500, 600, 700 | Display titles, pricing numbers, CPU/RAM counters |
+| **DM Sans** | Body, Labels, UI Text | 400, 500, 600, 700 | Clean Vietnamese reading experience, paragraphs, form labels |
+| **Fira Code** | Monospace, Code, CLI | 400, 500 | SSH commands, IP addresses, ports, logs |
 
-**CSS Import:**
 ```css
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap');
 ```
 
-### Spacing Variables
-
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--space-xs` | `4px` / `0.25rem` | Tight gaps |
-| `--space-sm` | `8px` / `0.5rem` | Icon gaps, inline spacing |
-| `--space-md` | `16px` / `1rem` | Standard padding |
-| `--space-lg` | `24px` / `1.5rem` | Section padding |
-| `--space-xl` | `32px` / `2rem` | Large gaps |
-| `--space-2xl` | `48px` / `3rem` | Section margins |
-| `--space-3xl` | `64px` / `4rem` | Hero padding |
-
-### Shadow Depths
-
-| Level | Value | Usage |
-|-------|-------|-------|
-| `--shadow-sm` | `0 1px 2px rgba(0,0,0,0.05)` | Subtle lift |
-| `--shadow-md` | `0 4px 6px rgba(0,0,0,0.1)` | Cards, buttons |
-| `--shadow-lg` | `0 10px 15px rgba(0,0,0,0.1)` | Modals, dropdowns |
-| `--shadow-xl` | `0 20px 25px rgba(0,0,0,0.15)` | Hero images, featured cards |
-
 ---
 
-## Component Specs
+## 3. Component Styling & Glassmorphism
 
-### Buttons
-
+### Primary Button
 ```css
-/* Primary Button */
 .btn-primary {
-  background: #22C55E;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 8px;
+  background: #10B981;
+  color: #022C22;
   font-weight: 600;
-  transition: all 200ms ease;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
+  transition: all 150ms ease;
   cursor: pointer;
 }
-
 .btn-primary:hover {
-  opacity: 0.9;
+  background: #34D399;
   transform: translateY(-1px);
-}
-
-/* Secondary Button */
-.btn-secondary {
-  background: transparent;
-  color: #1E293B;
-  border: 2px solid #1E293B;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 200ms ease;
-  cursor: pointer;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
 }
 ```
 
-### Cards
-
+### Infrastructure Glass Card
 ```css
-.card {
-  background: #0F172A;
+.infra-card {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
-  padding: 24px;
-  box-shadow: var(--shadow-md);
-  transition: all 200ms ease;
+  padding: 20px;
+  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
 }
-
-.card:hover {
-  box-shadow: var(--shadow-lg);
+.infra-card:hover {
+  background: rgba(30, 41, 59, 0.85);
+  border-color: rgba(16, 185, 129, 0.4);
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.5);
   transform: translateY(-2px);
 }
 ```
 
-### Inputs
-
-```css
-.input {
-  padding: 12px 16px;
-  border: 1px solid #E2E8F0;
-  border-radius: 8px;
-  font-size: 16px;
-  transition: border-color 200ms ease;
-}
-
-.input:focus {
-  border-color: #1E293B;
-  outline: none;
-  box-shadow: 0 0 0 3px #1E293B20;
-}
-```
-
-### Modals
-
-```css
-.modal-overlay {
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
-}
-
-.modal {
-  background: white;
-  border-radius: 16px;
-  padding: 32px;
-  box-shadow: var(--shadow-xl);
-  max-width: 500px;
-  width: 90%;
-}
-```
-
 ---
 
-## Style Guidelines
+## 4. Anti-Patterns (Do NOT Use)
 
-**Style:** Glassmorphism
-
-**Keywords:** Frosted glass, transparent, blurred background, layered, vibrant background, light source, depth, multi-layer
-
-**Best For:** Modern SaaS, financial dashboards, high-end corporate, lifestyle apps, modal overlays, navigation
-
-**Key Effects:** Backdrop blur (10-20px), subtle border (1px solid rgba white 0.2), light reflection, Z-depth
-
-### Page Pattern
-
-**Pattern Name:** Horizontal Scroll Journey
-
-- **Conversion Strategy:** Immersive product discovery. High engagement. Keep navigation visible.
-28,Bento Grid Showcase,bento,  grid,  features,  modular,  apple-style,  showcase", 1. Hero, 2. Bento Grid (Key Features), 3. Detail Cards, 4. Tech Specs, 5. CTA, Floating Action Button or Bottom of Grid, Card backgrounds: #F5F5F7 or Glass. Icons: Vibrant brand colors. Text: Dark., Hover card scale (1.02), video inside cards, tilt effect, staggered reveal, Scannable value props. High information density without clutter. Mobile stack.
-29,Interactive 3D Configurator,3d,  configurator,  customizer,  interactive,  product", 1. Hero (Configurator), 2. Feature Highlight (synced), 3. Price/Specs, 4. Purchase, Inside Configurator UI + Sticky Bottom Bar, Neutral studio background. Product: Realistic materials. UI: Minimal overlay., Real-time rendering, material swap animation, camera rotate/zoom, light reflection, Increases ownership feeling. 360 view reduces return rates. Direct add-to-cart.
-30,AI-Driven Dynamic Landing,ai,  dynamic,  personalized,  adaptive,  generative", 1. Prompt/Input Hero, 2. Generated Result Preview, 3. How it Works, 4. Value Prop, Input Field (Hero) + 'Try it' Buttons, Adaptive to user input. Dark mode for compute feel. Neon accents., Typing text effects, shimmering generation loaders, morphing layouts, Immediate value demonstration. 'Show, don't tell'. Low friction start.
-- **CTA Placement:** Floating Sticky CTA or End of Horizontal Track
-- **Section Order:** 1. Intro (Vertical), 2. The Journey (Horizontal Track), 3. Detail Reveal, 4. Vertical Footer
-
----
-
-## Anti-Patterns (Do NOT Use)
-
-- ❌ Slow updates
-- ❌ No automation
-
-### Additional Forbidden Patterns
-
-- ❌ **Emojis as icons** — Use SVG icons (Heroicons, Lucide, Simple Icons)
-- ❌ **Missing cursor:pointer** — All clickable elements must have cursor:pointer
-- ❌ **Layout-shifting hovers** — Avoid scale transforms that shift layout
-- ❌ **Low contrast text** — Maintain 4.5:1 minimum contrast ratio
-- ❌ **Instant state changes** — Always use transitions (150-300ms)
-- ❌ **Invisible focus states** — Focus states must be visible for a11y
-
----
-
-## Pre-Delivery Checklist
-
-Before delivering any UI code, verify:
-
-- [ ] No emojis used as icons (use SVG instead)
-- [ ] All icons from consistent icon set (Heroicons/Lucide)
-- [ ] `cursor-pointer` on all clickable elements
-- [ ] Hover states with smooth transitions (150-300ms)
-- [ ] Light mode: text contrast 4.5:1 minimum
-- [ ] Focus states visible for keyboard navigation
-- [ ] `prefers-reduced-motion` respected
-- [ ] Responsive: 375px, 768px, 1024px, 1440px
-- [ ] No content hidden behind fixed navbars
-- [ ] No horizontal scroll on mobile
+- ❌ **NO AI Cliche Gradients**: Do NOT use generic purple-to-blue-to-green gradient text everywhere (`from-cyan-400 via-violet-400 to-emerald-400`).
+- ❌ **NO Emojis as Icons**: Use Lucide SVG icons (`Server`, `Shield`, `Zap`, `Cpu`, `Terminal`, `Check`).
+- ❌ **NO Layout-Shifting Hovers**: Avoid scale transforms that disrupt adjacent layout grid items.
+- ❌ **NO Low Contrast Text**: Ensure secondary text is never darker than `#94A3B8`.
+- ❌ **NO Missing Feedback**: All Copy-to-clipboard (SSH, QR info) and Action buttons must provide instant visual Toast feedback.

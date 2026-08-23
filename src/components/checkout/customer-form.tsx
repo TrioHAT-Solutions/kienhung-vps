@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import { User, Mail, Phone, Building2, ArrowRight, ArrowLeft } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { useCheckoutStore } from "@/stores/checkout-store";
 import { customerSchema, type CustomerFormData } from "@/lib/validators";
 
@@ -62,20 +60,19 @@ export function CustomerForm() {
   };
 
   return (
-    <Card className="border border-white/10 bg-white/5 backdrop-blur-sm">
-      <CardHeader>
-        <CardTitle className="text-lg flex items-center gap-2">
-          <User className="h-5 w-5 text-cyan-400" />
+    <div className="rounded-xl border border-white/8 bg-[#0f172a]/80 backdrop-blur-xl overflow-hidden">
+      <div className="px-6 py-4 border-b border-white/8">
+        <h3 className="text-lg font-semibold font-[family-name:var(--font-space-grotesk)] text-white flex items-center gap-2">
+          <User className="h-5 w-5 text-[#06b6d4]" />
           Thông tin khách hàng
-        </CardTitle>
-      </CardHeader>
+        </h3>
+      </div>
 
-      <CardContent className="space-y-5">
-        {/* Name */}
+      <div className="p-6 space-y-5">
         <div className="space-y-2">
-          <label className="text-sm text-zinc-400 flex items-center gap-2">
+          <label className="text-sm text-[#94a3b8] flex items-center gap-2">
             <User className="h-4 w-4" />
-            Họ và tên <span className="text-red-400">*</span>
+            Họ và tên <span className="text-[#ef4444]">*</span>
           </label>
           <input
             type="text"
@@ -83,22 +80,21 @@ export function CustomerForm() {
             onChange={(e) => handleChange("name", e.target.value)}
             onBlur={() => handleBlur("name")}
             placeholder="Nguyễn Văn A"
-            className={`w-full px-4 py-3 rounded-lg bg-white/5 border text-white placeholder-zinc-600 focus:outline-none focus:ring-2 transition-all ${
+            className={`w-full px-4 py-3 rounded-lg bg-[#1e293b] border text-white placeholder-[#64748b] focus:outline-none focus:ring-2 transition-all ${
               errors.name && touched.name
-                ? "border-red-500 focus:ring-red-500/50"
-                : "border-white/10 focus:ring-cyan-500/50 focus:border-cyan-500/50"
+                ? "border-[#ef4444] focus:ring-[#ef4444]/50"
+                : "border-white/8 focus:ring-[#10b981]/50 focus:border-[#10b981]/50"
             }`}
           />
           {errors.name && touched.name && (
-            <p className="text-xs text-red-400">{errors.name}</p>
+            <p className="text-xs text-[#ef4444]">{errors.name}</p>
           )}
         </div>
 
-        {/* Email */}
         <div className="space-y-2">
-          <label className="text-sm text-zinc-400 flex items-center gap-2">
+          <label className="text-sm text-[#94a3b8] flex items-center gap-2">
             <Mail className="h-4 w-4" />
-            Email <span className="text-red-400">*</span>
+            Email <span className="text-[#ef4444]">*</span>
           </label>
           <input
             type="email"
@@ -106,22 +102,21 @@ export function CustomerForm() {
             onChange={(e) => handleChange("email", e.target.value)}
             onBlur={() => handleBlur("email")}
             placeholder="email@example.com"
-            className={`w-full px-4 py-3 rounded-lg bg-white/5 border text-white placeholder-zinc-600 focus:outline-none focus:ring-2 transition-all ${
+            className={`w-full px-4 py-3 rounded-lg bg-[#1e293b] border text-white placeholder-[#64748b] focus:outline-none focus:ring-2 transition-all ${
               errors.email && touched.email
-                ? "border-red-500 focus:ring-red-500/50"
-                : "border-white/10 focus:ring-cyan-500/50 focus:border-cyan-500/50"
+                ? "border-[#ef4444] focus:ring-[#ef4444]/50"
+                : "border-white/8 focus:ring-[#10b981]/50 focus:border-[#10b981]/50"
             }`}
           />
           {errors.email && touched.email && (
-            <p className="text-xs text-red-400">{errors.email}</p>
+            <p className="text-xs text-[#ef4444]">{errors.email}</p>
           )}
         </div>
 
-        {/* Phone */}
         <div className="space-y-2">
-          <label className="text-sm text-zinc-400 flex items-center gap-2">
+          <label className="text-sm text-[#94a3b8] flex items-center gap-2">
             <Phone className="h-4 w-4" />
-            Số điện thoại <span className="text-red-400">*</span>
+            Số điện thoại <span className="text-[#ef4444]">*</span>
           </label>
           <input
             type="tel"
@@ -129,20 +124,19 @@ export function CustomerForm() {
             onChange={(e) => handleChange("phone", e.target.value)}
             onBlur={() => handleBlur("phone")}
             placeholder="0976830911"
-            className={`w-full px-4 py-3 rounded-lg bg-white/5 border text-white placeholder-zinc-600 focus:outline-none focus:ring-2 transition-all ${
+            className={`w-full px-4 py-3 rounded-lg bg-[#1e293b] border text-white placeholder-[#64748b] focus:outline-none focus:ring-2 transition-all ${
               errors.phone && touched.phone
-                ? "border-red-500 focus:ring-red-500/50"
-                : "border-white/10 focus:ring-cyan-500/50 focus:border-cyan-500/50"
+                ? "border-[#ef4444] focus:ring-[#ef4444]/50"
+                : "border-white/8 focus:ring-[#10b981]/50 focus:border-[#10b981]/50"
             }`}
           />
           {errors.phone && touched.phone && (
-            <p className="text-xs text-red-400">{errors.phone}</p>
+            <p className="text-xs text-[#ef4444]">{errors.phone}</p>
           )}
         </div>
 
-        {/* Company */}
         <div className="space-y-2">
-          <label className="text-sm text-zinc-400 flex items-center gap-2">
+          <label className="text-sm text-[#94a3b8] flex items-center gap-2">
             <Building2 className="h-4 w-4" />
             Công ty (tuỳ chọn)
           </label>
@@ -151,29 +145,27 @@ export function CustomerForm() {
             value={customer.company}
             onChange={(e) => handleChange("company", e.target.value)}
             placeholder="Tên công ty của bạn"
-            className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-zinc-600 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition-all"
+            className="w-full px-4 py-3 rounded-lg bg-[#1e293b] border border-white/8 text-white placeholder-[#64748b] focus:outline-none focus:ring-2 focus:ring-[#10b981]/50 focus:border-[#10b981]/50 transition-all"
           />
         </div>
 
-        {/* Actions */}
         <div className="flex gap-3 pt-2">
-          <Button
-            variant="outline"
-            className="flex-1 border-white/10 hover:bg-white/5"
+          <button
+            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-white/8 text-[#94a3b8] hover:text-white hover:bg-[#1e293b] transition-all cursor-pointer"
             onClick={handleBack}
           >
             <ArrowLeft className="h-4 w-4" />
             Quay lại
-          </Button>
-          <Button
-            className="flex-1 bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-600 hover:to-violet-600"
+          </button>
+          <button
+            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-[#10b981] hover:bg-[#10b981]/90 text-[#022c22] font-semibold transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)] cursor-pointer"
             onClick={handleSubmit}
           >
             Tiếp tục
             <ArrowRight className="h-4 w-4" />
-          </Button>
+          </button>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }

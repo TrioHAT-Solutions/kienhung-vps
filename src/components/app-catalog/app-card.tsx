@@ -1,10 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Play, Star, Users, CheckCircle, ExternalLink, Download, Clock } from "lucide-react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { ArrowRight, Server, Layers, Cpu } from "lucide-react";
 
 export interface AppTemplate {
   id: string;
@@ -21,6 +18,9 @@ export interface AppTemplate {
   tags: string[];
   features: string[];
   requirements: string[];
+  stack?: string[];
+  defaultPort?: string;
+  dockerCompose?: string;
   demoUrl?: string;
   documentationUrl?: string;
 }
@@ -32,108 +32,58 @@ interface AppCardProps {
 }
 
 export function AppCard({ app, onSelect, isSelected }: AppCardProps) {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
-    <Card
-      className={`group relative overflow-hidden transition-all ${
-        isSelected
-          ? "ring-2 ring-cyan-500 bg-cyan-500/5"
-          : "hover:bg-white/5"
-      }`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+    <div
       onClick={() => onSelect?.(app)}
+      className="group relative rounded-xl border border-white/8 bg-[#0f172a]/80 backdrop-blur-md p-5 transition-all duration-200 hover:border-[#10b981]/40 hover:bg-[#1e293b]/80 cursor-pointer flex flex-col justify-between"
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-violet-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-
-      <CardHeader className="pb-3 relative">
-        <div className="flex items-start justify-between">
-          <div className="flex items-center gap-3">
-            <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
-              isSelected ? "bg-cyan-500/20" : "bg-white/10"
-            }`}>
-              <span className="text-xl">{app.icon}</span>
-            </div>
-            <div>
-              <CardTitle className="text-lg">{app.name}</CardTitle>
-              <CardDescription className="text-xs">
-                {app.version} • {app.size}
-              </CardDescription>
-            </div>
+      <div>
+        <div className="flex items-start justify-between gap-3 mb-3">
+          <div className="h-12 w-12 rounded-lg bg-[#10b981]/10 border border-[#10b981]/20 flex items-center justify-center text-[#10b981]">
+            <span className="text-xl">{app.icon}</span>
           </div>
-          <div className="flex items-center gap-1">
-            <Star className="h-4 w-4 text-yellow-400" />
-            <span className="text-sm font-medium">{app.rating}</span>
-            <span className="text-xs text-muted-foreground">
-              ({app.reviews})
-            </span>
-          </div>
+          <span className="px-2 py-0.5 rounded text-[10px] font-[family-name:var(--font-fira-code)] bg-white/5 text-[#94a3b8] border border-white/8">
+            {app.category}
+          </span>
         </div>
 
-        <Badge variant="secondary" className="w-fit text-xs">
-          {app.category}
-        </Badge>
-      </CardHeader>
-
-      <CardContent className="pt-0 relative">
-        <p className="text-sm text-muted-foreground mb-4">
+        <h3 className="text-base font-bold font-[family-name:var(--font-space-grotesk)] text-white mb-1 group-hover:text-[#10b981] transition-colors">
+          {app.name}
+        </h3>
+        <p className="text-xs text-[#94a3b8] line-clamp-2 mb-4 leading-relaxed">
           {app.description}
         </p>
 
-        <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4">
-          <div className="flex items-center gap-1">
-            <Users className="h-3 w-3" />
-            <span>{app.downloads.toLocaleString()} installs</span>
+        {app.stack && app.stack.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {app.stack.map((s) => (
+              <span key={s} className="px-2 py-0.5 rounded bg-[#06b6d4]/10 text-[10px] font-[family-name:var(--font-fira-code)] text-[#06b6d4] border border-[#06b6d4]/20">
+                {s}
+              </span>
+            ))}
           </div>
-          <div className="flex items-center gap-1">
-            <Clock className="h-3 w-3" />
-            <span>{app.installTime}s install</span>
+        )}
+
+        {!app.stack && app.tags.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {app.tags.slice(0, 3).map((tag) => (
+              <span key={tag} className="px-2 py-0.5 rounded bg-white/5 text-[10px] font-[family-name:var(--font-fira-code)] text-[#94a3b8]">
+                {tag}
+              </span>
+            ))}
           </div>
-        </div>
+        )}
+      </div>
 
-        <div className="flex flex-wrap gap-1 mb-4">
-          {app.tags.slice(0, 3).map((tag) => (
-            <Badge key={tag} variant="outline" className="text-xs">
-              {tag}
-            </Badge>
-          ))}
-          {app.tags.length > 3 && (
-            <Badge variant="outline" className="text-xs">
-              +{app.tags.length - 3}
-            </Badge>
-          )}
-        </div>
-      </CardContent>
-
-      <CardFooter className="relative">
-        <div className="flex items-center gap-2">
-          <Button size="sm" className={`flex-1 ${
-            isSelected
-              ? "bg-cyan-500 hover:bg-cyan-600"
-              : "bg-white/10 hover:bg-white/20"
-          }`}>
-            {isSelected ? (
-              <CheckCircle className="h-4 w-4 mr-1" />
-            ) : (
-              <Play className="h-4 w-4 mr-1" />
-            )}
-            {isSelected ? "Đã chọn" : "Cài đặt"}
-          </Button>
-          {isHovered && (
-            <>
-              {app.demoUrl && (
-                <Button size="sm" variant="outline">
-                  <ExternalLink className="h-3 w-3" />
-                </Button>
-              )}
-              <Button size="sm" variant="outline">
-                <Download className="h-3 w-3" />
-              </Button>
-            </>
-          )}
-        </div>
-      </CardFooter>
-    </Card>
+      <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs">
+        <span className="flex items-center gap-1 text-[#94a3b8] text-[11px]">
+          <Cpu className="h-3.5 w-3.5 text-[#10b981]" />
+          {app.requirements.join(" / ")}
+        </span>
+        <span className="text-[#10b981] font-medium inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+          Chi tiết <ArrowRight className="h-3 w-3" />
+        </span>
+      </div>
+    </div>
   );
 }
