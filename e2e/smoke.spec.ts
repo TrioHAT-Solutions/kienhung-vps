@@ -19,7 +19,7 @@ test.describe("Smoke - public pages", () => {
   test("configure page renders all selector sections", async ({ page }) => {
     await page.goto("/configure");
     // Switch to blocks tab
-    await page.getByRole("button", { name: /Chọn Theo Khối Linh Kiện/i }).click();
+    await page.getByRole("button", { name: /Chọn Theo Từng Linh Kiện/i }).click();
     for (const section of ["CPU", "Bộ nhớ RAM", "Lưu trữ", "Hệ điều hành", "Vị trí Datacenter", "Bandwidth", "Add-ons", "Thời hạn thuê"]) {
       await expect(page.getByRole("heading", { name: section, exact: true })).toBeVisible();
     }
@@ -42,7 +42,7 @@ test.describe("Smoke - public pages", () => {
 test.describe("E2E - configure to checkout flow", () => {
   test("full journey: configure → info form → VietQR payment", async ({ page }) => {
     await page.goto("/configure");
-    await page.getByRole("button", { name: /Chọn Theo Khối Linh Kiện/i }).click();
+    await page.getByRole("button", { name: /Chọn Theo Từng Linh Kiện/i }).click();
 
     await page.getByText("2 Cores").click();
     await page.getByText("4 GB", { exact: true }).click();
@@ -76,7 +76,7 @@ test.describe("E2E - configure to checkout flow", () => {
 
   test("checkout blocks empty required fields", async ({ page }) => {
     await page.goto("/configure");
-    await page.getByRole("button", { name: /Chọn Theo Khối Linh Kiện/i }).click();
+    await page.getByRole("button", { name: /Chọn Theo Từng Linh Kiện/i }).click();
     await page.getByText("2 Cores").click();
     await page.getByText("4 GB", { exact: true }).click();
     await page.getByText("100 GB SSD").click();
@@ -95,7 +95,7 @@ test.describe("E2E - configure to checkout flow", () => {
 
   test("configure blocks checkout without CPU/RAM/storage", async ({ page }) => {
     await page.goto("/configure");
-    await page.getByRole("button", { name: /Chọn Theo Khối Linh Kiện/i }).click();
+    await page.getByRole("button", { name: /Chọn Theo Từng Linh Kiện/i }).click();
 
     const payButton = page.locator("div.sticky.top-24").getByRole("button", { name: /Tiến Hành Đặt Hàng/i });
     await payButton.scrollIntoViewIfNeeded();

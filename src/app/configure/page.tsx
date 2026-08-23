@@ -122,7 +122,7 @@ export default function ConfigurePage() {
               }`}
             >
               <Sliders className="h-4 w-4" />
-              <span>Tự Chỉnh Bằng Thanh Trượt (iNET Style)</span>
+              <span>Tự Chỉnh Bằng Thanh Trượt</span>
             </button>
 
             <button
@@ -135,7 +135,7 @@ export default function ConfigurePage() {
               }`}
             >
               <LayoutGrid className="h-4 w-4" />
-              <span>Chọn Theo Khối Linh Kiện (Preset Blocks)</span>
+              <span>Chọn Theo Từng Linh Kiện</span>
             </button>
           </div>
         </div>

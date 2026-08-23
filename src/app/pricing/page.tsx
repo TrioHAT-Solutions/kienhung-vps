@@ -178,7 +178,7 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Custom VPS Builder Section (iNET Style) */}
+      {/* Custom VPS Builder Section */}
       <section id="custom-vps" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-white/8 bg-[#0a0f1d]/80">
         <div className="max-w-7xl mx-auto space-y-10">
           <div className="text-center space-y-3">
@@ -189,7 +189,7 @@ export default function PricingPage() {
               </span>
             </div>
             <h2 className="text-3xl md:text-5xl font-bold font-[family-name:var(--font-space-grotesk)] text-white">
-              Tự Chỉnh Cấu Hình VPS Riêng (iNET Style)
+              Tùy Chỉnh Cấu Hình VPS Linh Hoạt
             </h2>
             <p className="text-sm text-[#94a3b8] max-w-2xl mx-auto">
               Không tìm thấy gói cấu hình định sẵn phù hợp? Kéo thanh trượt để chọn chính xác số vCPU, RAM, ổ cứng SSD NVMe và thời hạn thuê theo mong muốn của bạn.
