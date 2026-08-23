@@ -9,25 +9,11 @@ export const metadata: Metadata = {
 
 const systems = [
   {
-    name: "Datacenter TP. Hồ Chí Minh (Viettel IDC)",
-    location: "Tân Bình / Bình Dương IDC",
+    name: "Datacenter TP. Hồ Chí Minh (Tier 3 IDC)",
+    location: "Khu Công Nghệ Cao / Tân Bình, TP.HCM",
     status: "Operational",
     uptime: "99.99%",
     latency: "2ms",
-  },
-  {
-    name: "Datacenter Hà Nội (VNPT IDC)",
-    location: "Nam Từ Liêm / Hòa Lạc IDC",
-    status: "Operational",
-    uptime: "99.98%",
-    latency: "3ms",
-  },
-  {
-    name: "Datacenter Singapore (Equinix SG1)",
-    location: "Queenstown, Singapore",
-    status: "Operational",
-    uptime: "99.95%",
-    latency: "28ms",
   },
   {
     name: "Cổng Thanh Toán VietQR NAPAS 24/7",

@@ -117,7 +117,7 @@ export function Footer() {
           <div className="flex flex-wrap justify-center gap-4 mb-6">
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#1e293b] border border-white/8">
               <Shield className="h-4 w-4 text-[#10b981]" />
-              <span className="text-xs text-[#94a3b8]">Datacenter Tier 3 VNPT / Viettel IDC</span>
+              <span className="text-xs text-[#94a3b8]">Datacenter Tier 3 tại TP.HCM</span>
             </div>
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#1e293b] border border-white/8">
               <FileText className="h-4 w-4 text-[#10b981]" />

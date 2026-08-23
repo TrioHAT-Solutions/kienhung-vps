@@ -96,7 +96,7 @@ const faqs = [
   },
   {
     question: "Datacenter nằm ở đâu?",
-    answer: "Datacenter chính tại TP.HCM và Hà Nội. Ngoài ra còn có lựa chọn Singapore và Tokyo cho khách hàng quốc tế. Tất cả đều đạt chuẩn Tier 3.",
+    answer: "Máy chủ đặt trực tiếp tại trung tâm dữ liệu chuẩn Tier 3 tại TP. Hồ Chí Minh, tối ưu hóa độ trễ cực thấp (< 5ms) và băng thông 1Gbps cho người dùng tại Việt Nam.",
   },
 ];
 

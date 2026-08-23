@@ -34,7 +34,7 @@ export function LatencyBenchmark() {
         </div>
         <div className="mt-4 p-3 rounded-lg bg-[#10b981]/10 border border-[#10b981]/20">
           <p className="text-xs text-[#10b981] text-center">
-            Datacenter Tier 3 tại TP. Hồ Chí Minh & Hà Nội — Tốc độ trong nước &lt; 5ms
+            Datacenter Tier 3 tại TP. Hồ Chí Minh — Tốc độ trong nước &lt; 5ms
           </p>
         </div>
       </div>

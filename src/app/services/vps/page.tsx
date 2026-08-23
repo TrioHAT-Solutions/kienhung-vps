@@ -62,7 +62,7 @@ const highlights = [
   {
     icon: Globe,
     title: "Datacenter Chuẩn Tier 3",
-    description: "Đặt tại trung tâm dữ liệu Viettel IDC & VNPT IDC (Hà Nội, TP.HCM) với kết nối băng thông trong nước 1Gbps, độ trễ < 5ms.",
+    description: "Đặt tại trung tâm dữ liệu chuẩn Tier 3 tại TP. Hồ Chí Minh với kết nối băng thông trong nước 1Gbps, độ trễ < 5ms.",
   },
   {
     icon: Activity,

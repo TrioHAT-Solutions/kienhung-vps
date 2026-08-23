@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const stats = [
   { value: "10+", label: "Năm kinh nghiệm phân phối IT" },
-  { value: "3", label: "Datacenter (TP.HCM, Hà Nội, SG)" },
+  { value: "Tier 3", label: "Datacenter chuẩn quốc tế tại TP.HCM" },
   { value: "99.9%", label: "Cam kết uptime SLA" },
   { value: "24/7", label: "Hỗ trợ kỹ thuật" },
 ];
