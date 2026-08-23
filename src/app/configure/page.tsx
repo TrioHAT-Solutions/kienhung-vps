@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { SlidersHorizontal, AlertCircle } from "lucide-react";
+import { SlidersHorizontal, AlertCircle, LayoutGrid, Sliders } from "lucide-react";
 import { CpuSelector, type CpuOption } from "@/components/vps-configurator/cpu-selector";
 import { MemorySelector, type MemoryOption } from "@/components/vps-configurator/memory-selector";
 import { StorageSelector, type StorageOption } from "@/components/vps-configurator/storage-selector";
@@ -11,6 +11,7 @@ import { LocationSelector, type LocationOption } from "@/components/vps-configur
 import { BandwidthSelector, type BandwidthOption } from "@/components/vps-configurator/bandwidth-selector";
 import { AddOnsSelector, type AddOnOption } from "@/components/vps-configurator/add-ons-selector";
 import { PriceSummary } from "@/components/vps-configurator/price-summary";
+import { CustomSliderConfigurator } from "@/components/vps-configurator/custom-slider-configurator";
 import { Button } from "@/components/ui/button";
 import {
   calculatePricing,
@@ -26,6 +27,7 @@ export default function ConfigurePage() {
   const setConfig = useCheckoutStore((s) => s.setConfig);
   const setStep = useCheckoutStore((s) => s.setStep);
 
+  const [configMode, setConfigMode] = useState<"slider" | "blocks">("slider");
   const [cpu, setCpu] = useState<CpuOption | null>(null);
   const [ram, setRam] = useState<MemoryOption | null>(null);
   const [storage, setStorage] = useState<StorageOption | null>(null);
@@ -91,84 +93,118 @@ export default function ConfigurePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-zinc-950 via-slate-900 to-zinc-950">
+    <div className="min-h-screen bg-[#080c14] text-white">
       <div className="container mx-auto px-4 py-12 max-w-7xl">
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 mb-4">
-            <SlidersHorizontal className="h-4 w-4 text-cyan-400" />
-            <span className="text-sm text-cyan-400 font-medium">
-              Tùy chỉnh theo nhu cầu
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#10b981]/10 backdrop-blur-sm border border-[#10b981]/20 mb-4">
+            <SlidersHorizontal className="h-4 w-4 text-[#10b981]" />
+            <span className="text-xs text-[#10b981] font-semibold font-[family-name:var(--font-dm-sans)]">
+              Khởi Tạo Máy Chủ Theo Yêu Cầu
             </span>
           </div>
-          <h1 className="text-3xl md:text-5xl font-bold mb-3">
-            <span className="bg-gradient-to-r from-cyan-400 via-violet-400 to-emerald-400 bg-clip-text text-transparent">
-              Cấu Hình VPS
-            </span>
+          <h1 className="text-3xl md:text-5xl font-bold mb-3 font-[family-name:var(--font-space-grotesk)] text-white">
+            Cấu Hình <span className="text-[#10b981]">Cloud VPS</span>
           </h1>
-          <p className="text-zinc-400 max-w-2xl mx-auto">
-            Chọn thông số máy chủ phù hợp — giá được tính tức thì theo từng lựa chọn
+          <p className="text-[#94a3b8] max-w-2xl mx-auto text-sm leading-relaxed mb-6">
+            Lựa chọn thông số máy chủ phù hợp — giá được tính tức thì theo từng lựa chọn với chiết khấu lên đến 35%.
           </p>
+
+          {/* Mode Switcher Tabs */}
+          <div className="inline-flex p-1.5 rounded-xl bg-[#0f172a] border border-white/8 gap-2">
+            <button
+              type="button"
+              onClick={() => setConfigMode("slider")}
+              className={`px-5 py-2.5 rounded-lg text-xs font-semibold flex items-center gap-2 transition-all cursor-pointer ${
+                configMode === "slider"
+                  ? "bg-[#10b981] text-[#022c22] shadow-[0_0_15px_rgba(16,185,129,0.3)]"
+                  : "text-[#94a3b8] hover:text-white hover:bg-white/5"
+              }`}
+            >
+              <Sliders className="h-4 w-4" />
+              <span>Tự Chỉnh Bằng Thanh Trượt (iNET Style)</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setConfigMode("blocks")}
+              className={`px-5 py-2.5 rounded-lg text-xs font-semibold flex items-center gap-2 transition-all cursor-pointer ${
+                configMode === "blocks"
+                  ? "bg-[#10b981] text-[#022c22] shadow-[0_0_15px_rgba(16,185,129,0.3)]"
+                  : "text-[#94a3b8] hover:text-white hover:bg-white/5"
+              }`}
+            >
+              <LayoutGrid className="h-4 w-4" />
+              <span>Chọn Theo Khối Linh Kiện (Preset Blocks)</span>
+            </button>
+          </div>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Selectors */}
-          <div className="lg:col-span-2 space-y-10">
-            <CpuSelector selectedCpu={cpu} onCpuSelect={setCpu} />
-            <MemorySelector selectedMemory={ram} onMemorySelect={setRam} />
-            <StorageSelector selectedStorage={storage} onStorageSelect={setStorage} />
-            <OsSelector selectedOs={os} onOsSelect={setOs} />
-            <LocationSelector selectedLocation={location} onLocationSelect={setLocation} />
-            <BandwidthSelector selectedBandwidth={bandwidth} onBandwidthSelect={setBandwidth} />
-            <AddOnsSelector selectedAddOns={addOns} onAddOnToggle={toggleAddOn} />
+        {/* Content based on configMode */}
+        {configMode === "slider" ? (
+          <CustomSliderConfigurator />
+        ) : (
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Selectors */}
+            <div className="lg:col-span-2 space-y-10">
+              <CpuSelector selectedCpu={cpu} onCpuSelect={setCpu} />
+              <MemorySelector selectedMemory={ram} onMemorySelect={setRam} />
+              <StorageSelector selectedStorage={storage} onStorageSelect={setStorage} />
+              <OsSelector selectedOs={os} onOsSelect={setOs} />
+              <LocationSelector selectedLocation={location} onLocationSelect={setLocation} />
+              <BandwidthSelector selectedBandwidth={bandwidth} onBandwidthSelect={setBandwidth} />
+              <AddOnsSelector selectedAddOns={addOns} onAddOnToggle={toggleAddOn} />
 
-            {/* Duration */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Thời hạn thuê</h3>
-              <div className="flex flex-wrap gap-2">
-                {durationOptions.map((opt) => (
-                  <Button
-                    key={opt.value}
-                    variant={duration === opt.value ? "default" : "outline"}
-                    onClick={() => setDuration(opt.value)}
-                    className={
-                      duration === opt.value
-                        ? "bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-600 hover:to-violet-600"
-                        : "border-white/10 hover:bg-white/5"
-                    }
-                  >
-                    {opt.label}
-                    {opt.discount > 0 && (
-                      <span className="ml-2 text-xs text-emerald-400">
-                        -{opt.discount}%
-                      </span>
-                    )}
-                  </Button>
-                ))}
+              {/* Duration */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold font-[family-name:var(--font-space-grotesk)] text-white">
+                  Thời hạn thuê
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {durationOptions.map((opt) => (
+                    <Button
+                      key={opt.value}
+                      variant={duration === opt.value ? "default" : "outline"}
+                      onClick={() => setDuration(opt.value)}
+                      className={
+                        duration === opt.value
+                          ? "bg-[#10b981] text-[#022c22] hover:bg-[#10b981]/90 font-bold"
+                          : "border-white/10 hover:bg-white/5 text-[#94a3b8] hover:text-white"
+                      }
+                    >
+                      {opt.label}
+                      {opt.discount > 0 && (
+                        <span className="ml-2 text-xs text-[#10b981]">
+                          -{opt.discount}%
+                        </span>
+                      )}
+                    </Button>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Summary Sidebar */}
-          <div>
-            {showError && (!cpu || !ram || !storage) && (
-              <div className="mb-4 flex items-start gap-2 p-3 rounded-lg border border-red-500/50 bg-red-500/10 text-sm text-red-400">
-                <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                <span>Vui lòng chọn CPU, RAM và Lưu trữ để tiếp tục.</span>
-              </div>
-            )}
-            <PriceSummary
-              pricing={pricing}
-              selectedDuration={duration}
-              durationDiscount={totals.durationDiscount}
-              promoDiscount={totals.promoDiscount}
-              totalBeforeDiscount={totals.totalBeforeDiscount}
-              totalAfterDiscount={totals.totalAfterDiscount}
-              savings={totals.savings}
-              onCheckout={handleCheckout}
-            />
+            {/* Summary Sidebar */}
+            <div>
+              {showError && (!cpu || !ram || !storage) && (
+                <div className="mb-4 flex items-start gap-2 p-3 rounded-lg border border-red-500/50 bg-red-500/10 text-sm text-red-400">
+                  <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                  <span>Vui lòng chọn CPU, RAM và Lưu trữ để tiếp tục.</span>
+                </div>
+              )}
+              <PriceSummary
+                pricing={pricing}
+                selectedDuration={duration}
+                durationDiscount={totals.durationDiscount}
+                promoDiscount={totals.promoDiscount}
+                totalBeforeDiscount={totals.totalBeforeDiscount}
+                totalAfterDiscount={totals.totalAfterDiscount}
+                savings={totals.savings}
+                onCheckout={handleCheckout}
+              />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

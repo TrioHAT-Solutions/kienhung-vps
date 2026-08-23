@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Zap, Check, ChevronDown, ChevronUp } from "lucide-react";
+import { Zap, Check, ChevronDown, ChevronUp, Sparkles, SlidersHorizontal } from "lucide-react";
 import { PricingCardRefactored } from "@/components/pricing/pricing-card-refactored";
 import { FeatureComparisonTable } from "@/components/pricing/feature-comparison-table";
+import { CustomSliderConfigurator } from "@/components/vps-configurator/custom-slider-configurator";
 
 const plans = [
   {
@@ -174,6 +175,28 @@ export default function PricingPage() {
               />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Custom VPS Builder Section (iNET Style) */}
+      <section id="custom-vps" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-white/8 bg-[#0a0f1d]/80">
+        <div className="max-w-7xl mx-auto space-y-10">
+          <div className="text-center space-y-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#10b981]/10 border border-[#10b981]/20">
+              <SlidersHorizontal className="h-4 w-4 text-[#10b981]" />
+              <span className="text-xs font-semibold text-[#10b981] font-[family-name:var(--font-dm-sans)]">
+                Tự Do Tùy Biến Không Giới Hạn
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold font-[family-name:var(--font-space-grotesk)] text-white">
+              Tự Chỉnh Cấu Hình VPS Riêng (iNET Style)
+            </h2>
+            <p className="text-sm text-[#94a3b8] max-w-2xl mx-auto">
+              Không tìm thấy gói cấu hình định sẵn phù hợp? Kéo thanh trượt để chọn chính xác số vCPU, RAM, ổ cứng SSD NVMe và thời hạn thuê theo mong muốn của bạn.
+            </p>
+          </div>
+
+          <CustomSliderConfigurator />
         </div>
       </section>
 
