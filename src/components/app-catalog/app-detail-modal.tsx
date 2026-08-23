@@ -4,6 +4,7 @@ import { useState } from "react";
 import { X, Copy, Check, ArrowRight, ExternalLink, BookOpen } from "lucide-react";
 import Link from "next/link";
 import type { AppTemplate } from "./app-card";
+import { AppIconRenderer } from "./app-icon";
 
 interface AppDetailModalProps {
   app: AppTemplate;
@@ -34,7 +35,7 @@ services:
         <div className="sticky top-0 z-10 flex items-center justify-between px-6 py-4 border-b border-white/8 bg-[#0f172a]">
           <div className="flex items-center gap-3">
             <div className="h-12 w-12 rounded-lg bg-[#10b981]/10 border border-[#10b981]/20 flex items-center justify-center text-[#10b981]">
-              <span className="text-xl">{app.icon}</span>
+              <AppIconRenderer category={app.category} id={app.id} className="h-6 w-6 text-[#10b981]" />
             </div>
             <div>
               <h2 className="text-xl font-bold font-[family-name:var(--font-space-grotesk)] text-white">{app.name}</h2>

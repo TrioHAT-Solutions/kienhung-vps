@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ArrowRight, Server, Layers, Cpu } from "lucide-react";
+import { AppIconRenderer } from "./app-icon";
 
 export interface AppTemplate {
   id: string;
@@ -40,7 +41,7 @@ export function AppCard({ app, onSelect, isSelected }: AppCardProps) {
       <div>
         <div className="flex items-start justify-between gap-3 mb-3">
           <div className="h-12 w-12 rounded-lg bg-[#10b981]/10 border border-[#10b981]/20 flex items-center justify-center text-[#10b981]">
-            <span className="text-xl">{app.icon}</span>
+            <AppIconRenderer category={app.category} id={app.id} className="h-6 w-6 text-[#10b981]" />
           </div>
           <span className="px-2 py-0.5 rounded text-[10px] font-[family-name:var(--font-fira-code)] bg-white/5 text-[#94a3b8] border border-white/8">
             {app.category}
