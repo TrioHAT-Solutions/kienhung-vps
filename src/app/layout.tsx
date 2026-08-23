@@ -77,9 +77,11 @@ const jsonLd = {
   name: "CÔNG TY TNHH THƯƠNG MẠI VÀ PHÂN PHỐI KIẾN HƯNG",
   alternateName: "TrioHAT-VPS",
   taxID: "3703344754",
-  telephone: "+84976830911",
+  telephone: "+84357554576",
+  email: "kienhung.do1105@gmail.com",
   address: {
     "@type": "PostalAddress",
+    streetAddress: "168 Hoàng Cầm (Quốc lộ 1K cũ), Linh Xuân",
     addressLocality: "TP. Hồ Chí Minh",
     addressCountry: "VN",
   },

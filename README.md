@@ -1,8 +1,8 @@
 # TrioHAT-VPS — Nền Tảng Máy Chủ Ảo & Triển Khai Phần Mềm Trọn Gói
 
 > **Thuộc**: CÔNG TY TNHH THƯƠNG MẠI VÀ PHÂN PHỐI KIẾN HƯNG (MST: 3703344754)  
-> **Địa chỉ**: Số 39/9, Đường Trần Hưng Đạo, Phường Đông Hòa, TP. HCM, Việt Nam  
-> **Hotline**: 0976830911  
+> **Địa chỉ**: 168 Hoàng Cầm (Quốc lộ 1K cũ), Linh Xuân, TP.HCM, Việt Nam  
+> **Hotline**: 0357554576 | **Email**: kienhung.do1105@gmail.com  
 
 [![Next.js 16.3+](https://img.shields.io/badge/Next.js-16.3+-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![React 19](https://img.shields.io/badge/React-19.2-61dafb?style=flat-square&logo=react)](https://react.dev/)

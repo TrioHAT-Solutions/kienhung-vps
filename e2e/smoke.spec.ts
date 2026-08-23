@@ -48,7 +48,7 @@ test.describe("E2E - configure to checkout flow", () => {
 
     await page.getByPlaceholder("Nguyễn Văn A").fill("Nguyen Van Test");
     await page.getByPlaceholder("email@example.com").fill("test@triohat.vn");
-    await page.getByPlaceholder("0976830911").fill("0976830911");
+    await page.getByPlaceholder("0357554576").fill("0357554576");
 
     await page.getByRole("button", { name: /Tiếp tục/i }).click();
 
@@ -175,7 +175,7 @@ test.describe("Smoke - apps, about & SEO", () => {
     await page.goto("/about");
     await expect(page.getByText("CÔNG TY TNHH THƯƠNG MẠI VÀ PHÂN PHỐI KIẾN HƯNG").first()).toBeVisible();
     await expect(page.getByText("3703344754").first()).toBeVisible();
-    await expect(page.getByText("0976 830 911")).toBeVisible();
+    await expect(page.getByText("0357554576").first()).toBeVisible();
   });
 
   test("404 page renders for unknown routes", async ({ page }) => {

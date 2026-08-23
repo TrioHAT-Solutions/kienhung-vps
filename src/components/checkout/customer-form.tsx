@@ -123,7 +123,7 @@ export function CustomerForm() {
             value={customer.phone}
             onChange={(e) => handleChange("phone", e.target.value)}
             onBlur={() => handleBlur("phone")}
-            placeholder="0976830911"
+            placeholder="0357554576"
             className={`w-full px-4 py-3 rounded-lg bg-[#1e293b] border text-white placeholder-[#64748b] focus:outline-none focus:ring-2 transition-all ${
               errors.phone && touched.phone
                 ? "border-[#ef4444] focus:ring-[#ef4444]/50"

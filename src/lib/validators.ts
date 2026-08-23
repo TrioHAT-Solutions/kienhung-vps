@@ -8,7 +8,7 @@ export const customerSchema = z.object({
   email: z.string().email("Email không hợp lệ"),
   phone: z
     .string()
-    .regex(/^(0|\+84)[0-9]{9,10}$/, "Số điện thoại không hợp lệ (VD: 0976830911)"),
+    .regex(/^(0|\+84)[0-9]{9,10}$/, "Số điện thoại không hợp lệ (VD: 0357554576)"),
   company: z.string().optional(),
 });
 

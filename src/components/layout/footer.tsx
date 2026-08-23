@@ -42,11 +42,15 @@ export function Footer() {
               <p className="font-medium text-white font-[family-name:var(--font-space-grotesk)]">CÔNG TY TNHH THƯƠNG MẠI VÀ PHÂN PHỐI KIẾN HƯNG</p>
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 shrink-0" />
-                <span>Số 39/9, Đường Trần Hưng Đạo, P. Đông Hòa, TP. HCM</span>
+                <span>168 Hoàng Cầm (Quốc lộ 1K cũ), Linh Xuân, TP.HCM</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4 shrink-0" />
-                <a href="tel:0976830911" className="hover:text-white transition-colors">0976830911</a>
+                <a href="tel:0357554576" className="hover:text-white transition-colors">0357554576</a>
+              </div>
+              <div className="flex items-center gap-2">
+                <Mail className="h-4 w-4 shrink-0" />
+                <a href="mailto:kienhung.do1105@gmail.com" className="hover:text-white transition-colors">kienhung.do1105@gmail.com</a>
               </div>
               <p className="text-xs font-[family-name:var(--font-fira-code)]">MST: 3703344754</p>
             </div>
@@ -102,7 +106,7 @@ export function Footer() {
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-[#94a3b8] hover:text-white transition-colors">
                 <Globe className="h-5 w-5" />
               </a>
-              <a href="mailto:info@triohat.com" className="text-[#94a3b8] hover:text-white transition-colors">
+              <a href="mailto:kienhung.do1105@gmail.com" className="text-[#94a3b8] hover:text-white transition-colors">
                 <Mail className="h-5 w-5" />
               </a>
             </div>
@@ -127,7 +131,7 @@ export function Footer() {
             © 2026 CÔNG TY TNHH THƯƠNG MẠI VÀ PHÂN PHỐI KIẾN HƯNG. All rights reserved.
           </p>
           <p className="text-xs text-[#64748b] font-[family-name:var(--font-fira-code)]">
-            MST: 3703344754 | Hotline: 0976830911
+            MST: 3703344754 | Hotline: 0357554576
           </p>
         </div>
       </div>

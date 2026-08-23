@@ -48,13 +48,16 @@ export function Header() {
               </span>
               <span className="text-xs text-[#10b981] font-[family-name:var(--font-fira-code)]">Hệ thống: Hoạt động 100%</span>
             </div>
-            <a href="tel:0976830911" className="hidden sm:flex items-center gap-2 text-sm text-[#94a3b8] hover:text-white">
+            <a href="tel:0357554576" className="hidden sm:flex items-center gap-2 text-sm text-[#94a3b8] hover:text-white transition-colors">
               <Phone className="h-4 w-4" />
-              <span>0976830911</span>
+              <span>0357554576</span>
             </a>
-            <button className="bg-[#10b981] hover:bg-[#10b981]/90 text-[#022c22] font-semibold px-4 py-2 rounded-lg transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+            <Link
+              href="/configure"
+              className="bg-[#10b981] hover:bg-[#10b981]/90 text-[#022c22] font-semibold px-4 py-2 rounded-lg transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)] inline-flex items-center justify-center text-sm"
+            >
               Bắt đầu
-            </button>
+            </Link>
           </div>
 
           <button

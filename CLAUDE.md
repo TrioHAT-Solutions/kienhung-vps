@@ -62,6 +62,7 @@ refactor/
 | Company | CONG TY TNHH THUONG MAI VA PHAN PHOI KIEN HUNG |
 | International | KIEN HUNG DISTRIBUTION AND TRADING COMPANY LIMITED |
 | Tax ID | 3703344754 |
-| Address | Số 39/9, Đường Trần Hưng Đạo, Phường Đông Hòa, TP. HCM |
+| Address | 168 Hoàng Cầm (Quốc lộ 1K cũ), Linh Xuân, TP.HCM |
 | Director | Do Kien Hung |
-| Hotline | 0976830911 |
+| Hotline | 0357554576 |
+| Email | kienhung.do1105@gmail.com |
