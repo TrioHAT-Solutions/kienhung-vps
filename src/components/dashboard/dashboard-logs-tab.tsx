@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import {
   ScrollText,
   Terminal,
@@ -85,8 +85,6 @@ export function DashboardLogsTab() {
   const [selectedService, setSelectedService] = useState<string>("ALL");
   const [search, setSearch] = useState<string>("");
   const [isPaused, setIsPaused] = useState<boolean>(false);
-  const [autoScroll, setAutoScroll] = useState<boolean>(true);
-  const terminalEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isPaused) return;
@@ -126,12 +124,6 @@ export function DashboardLogsTab() {
 
     return () => clearInterval(interval);
   }, [isPaused]);
-
-  useEffect(() => {
-    if (autoScroll && terminalEndRef.current) {
-      terminalEndRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [logs, autoScroll]);
 
   const filteredLogs = logs.filter((log) => {
     const matchService = selectedService === "ALL" || log.service === selectedService;
@@ -289,7 +281,6 @@ export function DashboardLogsTab() {
               </div>
             ))
           )}
-          <div ref={terminalEndRef} />
         </div>
       </div>
     </div>
