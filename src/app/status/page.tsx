@@ -48,7 +48,7 @@ export default function StatusPage() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10b981] opacity-75" />
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#10b981]" />
             </span>
-            <span className="text-xs font-medium text-[#10b981] font-[family-name:var(--font-fira-code)]">
+            <span className="text-xs font-semibold text-[#10b981] font-[family-name:var(--font-dm-sans)]">
               Tất Cả Hệ Thống Hoạt Động Bình Thường
             </span>
           </div>
@@ -109,7 +109,7 @@ export default function StatusPage() {
                     <div className="text-[#94a3b8]">SLA: <span className="text-[#10b981] font-mono">{sys.uptime}</span></div>
                   </div>
 
-                  <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#10b981]/10 border border-[#10b981]/20 text-[#10b981] font-medium font-[family-name:var(--font-fira-code)] text-xs">
+                  <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#10b981]/10 border border-[#10b981]/20 text-[#10b981] font-semibold font-[family-name:var(--font-dm-sans)] text-xs">
                     <CheckCircle2 className="h-4 w-4" />
                     <span>Hoạt Động</span>
                   </div>

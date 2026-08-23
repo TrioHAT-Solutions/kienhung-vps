@@ -1,25 +1,28 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, DM_Sans, Fira_Code } from "next/font/google";
+import { Plus_Jakarta_Sans, Be_Vietnam_Pro, JetBrains_Mono } from "next/font/google";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-space-grotesk",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  subsets: ["latin", "vietnamese"],
+  weight: ["500", "600", "700", "800"],
+  display: "swap",
 });
 
-const dmSans = DM_Sans({
+const beVietnamPro = Be_Vietnam_Pro({
   variable: "--font-dm-sans",
-  subsets: ["latin"],
+  subsets: ["latin", "vietnamese"],
   weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
-const firaCode = Fira_Code({
+const jetbrainsMono = JetBrains_Mono({
   variable: "--font-fira-code",
-  subsets: ["latin"],
-  weight: ["400", "500"],
+  subsets: ["latin", "vietnamese"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const viewport: Viewport = {
@@ -92,7 +95,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="vi"
-      className={`${spaceGrotesk.variable} ${dmSans.variable} ${firaCode.variable} h-full antialiased`}
+      className={`${plusJakartaSans.variable} ${beVietnamPro.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#080c14] text-[#f8fafc]">
         <script

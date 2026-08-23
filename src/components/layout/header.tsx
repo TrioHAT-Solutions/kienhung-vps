@@ -46,7 +46,7 @@ export function Header() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10b981] opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10b981]"></span>
               </span>
-              <span className="text-xs text-[#10b981] font-[family-name:var(--font-fira-code)]">Hệ thống: Hoạt động 100%</span>
+              <span className="text-xs text-[#10b981] font-medium font-[family-name:var(--font-dm-sans)]">Hệ thống: Hoạt động 100%</span>
             </div>
             <a href="tel:0357554576" className="hidden lg:flex items-center gap-2 text-sm text-[#94a3b8] hover:text-white transition-colors mr-2">
               <Phone className="h-4 w-4" />

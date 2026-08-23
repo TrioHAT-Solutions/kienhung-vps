@@ -20,7 +20,7 @@ export default function AboutPage() {
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#10b981]/10 border border-[#10b981]/20 mb-4">
             <span className="h-2 w-2 rounded-full bg-[#10b981]" />
-            <span className="text-xs font-medium text-[#10b981] font-[family-name:var(--font-fira-code)]">
+            <span className="text-xs font-semibold text-[#10b981] font-[family-name:var(--font-dm-sans)]">
               CÔNG TY TNHH THƯƠNG MẠI VÀ PHÂN PHỐI KIẾN HƯNG
             </span>
           </div>

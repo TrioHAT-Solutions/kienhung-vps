@@ -15,7 +15,7 @@ export default function RefundPage() {
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#10b981]/10 border border-[#10b981]/20 mb-4">
             <ShieldCheck className="h-4 w-4 text-[#10b981]" />
-            <span className="text-xs font-medium text-[#10b981] font-[family-name:var(--font-fira-code)]">
+            <span className="text-xs font-semibold text-[#10b981] font-[family-name:var(--font-dm-sans)]">
               Cam Kết 100% Không Rủi Ro
             </span>
           </div>
