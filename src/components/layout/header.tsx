@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X, Phone, Server } from "lucide-react";
+import { Menu, X, Phone, Server, LayoutDashboard } from "lucide-react";
 
 const navItems = [
   { label: "Trang chủ", href: "/" },
@@ -40,18 +40,25 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-4">
-            <div className="hidden sm:flex items-center gap-2">
+          <div className="flex items-center gap-3">
+            <div className="hidden sm:flex items-center gap-2 mr-2">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10b981] opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10b981]"></span>
               </span>
               <span className="text-xs text-[#10b981] font-[family-name:var(--font-fira-code)]">Hệ thống: Hoạt động 100%</span>
             </div>
-            <a href="tel:0357554576" className="hidden sm:flex items-center gap-2 text-sm text-[#94a3b8] hover:text-white transition-colors">
+            <a href="tel:0357554576" className="hidden lg:flex items-center gap-2 text-sm text-[#94a3b8] hover:text-white transition-colors mr-2">
               <Phone className="h-4 w-4" />
               <span>0357554576</span>
             </a>
+            <Link
+              href="/dashboard"
+              className="px-3 py-2 rounded-lg border border-white/8 hover:border-[#10b981]/40 bg-[#0f172a] hover:bg-[#1e293b] text-sm text-[#94a3b8] hover:text-white transition-all inline-flex items-center gap-1.5"
+            >
+              <LayoutDashboard className="h-4 w-4 text-[#06b6d4]" />
+              <span>Dashboard</span>
+            </Link>
             <Link
               href="/configure"
               className="bg-[#10b981] hover:bg-[#10b981]/90 text-[#022c22] font-semibold px-4 py-2 rounded-lg transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)] inline-flex items-center justify-center text-sm"

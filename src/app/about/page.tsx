@@ -9,8 +9,6 @@ export const metadata: Metadata = {
 };
 
 const stats = [
-  { value: "10+", label: "Năm kinh nghiệm phân phối IT" },
-  { value: "Tier 3", label: "Datacenter chuẩn quốc tế tại TP.HCM" },
   { value: "99.9%", label: "Cam kết uptime SLA" },
   { value: "24/7", label: "Hỗ trợ kỹ thuật" },
 ];
@@ -35,7 +33,7 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+        <div className="grid grid-cols-2 gap-4 mb-12 max-w-xl mx-auto">
           {stats.map((stat) => (
             <Card key={stat.label} className="border border-white/8 bg-[#0f172a]/80 backdrop-blur-sm">
               <CardContent className="pt-6 text-center">

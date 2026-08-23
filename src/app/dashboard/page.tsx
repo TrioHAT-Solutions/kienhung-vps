@@ -13,6 +13,9 @@ import { ServerStatus } from "@/components/dashboard/server-status";
 import { UsageMeters } from "@/components/dashboard/usage-meters";
 import { ActionButtons } from "@/components/dashboard/action-buttons";
 import { ActivityFeed } from "@/components/dashboard/activity-feed";
+import { DashboardAppsTab } from "@/components/dashboard/dashboard-apps-tab";
+import { DashboardLogsTab } from "@/components/dashboard/dashboard-logs-tab";
+import { DashboardConfigTab } from "@/components/dashboard/dashboard-config-tab";
 import type { PowerState } from "@/components/dashboard/power-state";
 import {
   generateMetricHistory,
@@ -26,11 +29,13 @@ import {
 } from "@/data/mock-metrics";
 import { useCheckoutStore } from "@/stores/checkout-store";
 
-const SIDEBAR_ITEMS = [
-  { icon: LayoutDashboard, label: "Tổng quan", active: true },
-  { icon: Grid3X3, label: "Ứng dụng", active: false },
-  { icon: ScrollText, label: "Nhật ký", active: false },
-  { icon: Settings, label: "Cấu hình", active: false },
+type DashboardTab = "overview" | "apps" | "logs" | "config";
+
+const SIDEBAR_ITEMS: { id: DashboardTab; icon: typeof LayoutDashboard; label: string }[] = [
+  { id: "overview", icon: LayoutDashboard, label: "Tổng quan" },
+  { id: "apps", icon: Grid3X3, label: "Ứng dụng" },
+  { id: "logs", icon: ScrollText, label: "Nhật ký" },
+  { id: "config", icon: Settings, label: "Cấu hình" },
 ];
 
 const HISTORY_LENGTH = 30;
@@ -40,6 +45,7 @@ export default function DashboardPage() {
   const config = useCheckoutStore((s) => s.config);
   const orderId = useCheckoutStore((s) => s.orderId);
 
+  const [activeTab, setActiveTab] = useState<DashboardTab>("overview");
   const [power, setPower] = useState<PowerState>("running");
   const [metrics, setMetrics] = useState<MetricPoint[]>(() => stableHistory(HISTORY_LENGTH));
   const [uptimeSeconds, setUptimeSeconds] = useState(() => 14 * 86400 + 1325);
@@ -115,6 +121,7 @@ export default function DashboardPage() {
         <MockBanner />
 
         <div className="mt-6 grid lg:grid-cols-[220px_1fr] gap-6">
+          {/* Desktop Sidebar */}
           <aside className="hidden lg:block">
             <div className="sticky top-24 space-y-1">
               <div className="flex items-center gap-2 px-3 pb-4 text-sm font-semibold text-white font-[family-name:var(--font-space-grotesk)]">
@@ -123,12 +130,12 @@ export default function DashboardPage() {
               </div>
               {SIDEBAR_ITEMS.map((item) => (
                 <button
-                  key={item.label}
-                  disabled={!item.active}
-                  className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all cursor-pointer ${
-                    item.active
-                      ? "bg-[#10b981]/10 text-[#10b981] border border-[#10b981]/30"
-                      : "text-[#64748b] hover:text-[#94a3b8] hover:bg-[#1e293b] cursor-not-allowed"
+                  key={item.id}
+                  onClick={() => setActiveTab(item.id)}
+                  className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all cursor-pointer font-medium ${
+                    activeTab === item.id
+                      ? "bg-[#10b981]/10 text-[#10b981] border border-[#10b981]/30 font-semibold"
+                      : "text-[#94a3b8] hover:text-white hover:bg-[#1e293b] border border-transparent"
                   }`}
                 >
                   <item.icon className="h-4 w-4" />
@@ -138,63 +145,83 @@ export default function DashboardPage() {
             </div>
           </aside>
 
+          {/* Main Tab Content */}
           <main className="space-y-6 min-w-0">
-            <ServerStatus
-              power={power}
-              uptimeSeconds={uptimeSeconds}
-              ipAddress={ipAddress}
-              serverName={serverName}
-              osName={osName}
-              location={location}
-            />
+            {activeTab === "overview" && (
+              <>
+                <ServerStatus
+                  power={power}
+                  uptimeSeconds={uptimeSeconds}
+                  ipAddress={ipAddress}
+                  serverName={serverName}
+                  osName={osName}
+                  location={location}
+                />
 
-            <ActionButtons
-              power={power}
-              ipAddress={ipAddress}
-              sshPort={22}
-              onRestart={handleRestart}
-              onTogglePower={handleTogglePower}
-              onSnapshot={handleSnapshot}
-            />
+                <ActionButtons
+                  power={power}
+                  ipAddress={ipAddress}
+                  sshPort={22}
+                  onRestart={handleRestart}
+                  onTogglePower={handleTogglePower}
+                  onSnapshot={handleSnapshot}
+                />
 
-            <UsageMeters
-              metrics={metrics}
-              running={power === "running"}
-              storageUsedGb={Math.round(storageTotalGb * 0.42)}
-              storageTotalGb={storageTotalGb}
-            />
+                <UsageMeters
+                  metrics={metrics}
+                  running={power === "running"}
+                  storageUsedGb={Math.round(storageTotalGb * 0.42)}
+                  storageTotalGb={storageTotalGb}
+                />
 
-            <div className="grid lg:grid-cols-2 gap-6">
-              <ActivityFeed activities={activities} />
-              <div className="space-y-4">
-                <h3 className="text-base font-semibold flex items-center gap-2 text-white font-[family-name:var(--font-space-grotesk)]">
-                  <Settings className="h-4 w-4 text-[#94a3b8]" />
-                  Cấu hình hiện tại
-                </h3>
-                <div className="rounded-xl border border-white/8 bg-[#0f172a]/80 backdrop-blur-xl p-5 grid grid-cols-2 gap-x-6 gap-y-3 text-sm">
-                  <span className="text-[#64748b]">vCPU</span>
-                  <span className="text-white font-[family-name:var(--font-fira-code)]">{config.cpu?.cores ?? 2} Cores</span>
-                  <span className="text-[#64748b]">RAM</span>
-                  <span className="text-white font-[family-name:var(--font-fira-code)]">{ramTotalGb} GB DDR4</span>
-                  <span className="text-[#64748b]">NVMe</span>
-                  <span className="text-white font-[family-name:var(--font-fira-code)]">{storageTotalGb} GB</span>
-                  <span className="text-[#64748b]">Bandwidth</span>
-                  <span className="text-white font-[family-name:var(--font-fira-code)]">{config.bandwidth?.label ?? "Không giới hạn"}</span>
+                <div className="grid lg:grid-cols-2 gap-6">
+                  <ActivityFeed activities={activities} />
+                  <div className="space-y-4">
+                    <h3 className="text-base font-semibold flex items-center gap-2 text-white font-[family-name:var(--font-space-grotesk)]">
+                      <Settings className="h-4 w-4 text-[#94a3b8]" />
+                      Cấu hình hiện tại
+                    </h3>
+                    <div className="rounded-xl border border-white/8 bg-[#0f172a]/80 backdrop-blur-xl p-5 grid grid-cols-2 gap-x-6 gap-y-3 text-sm">
+                      <span className="text-[#64748b]">vCPU</span>
+                      <span className="text-white font-[family-name:var(--font-fira-code)]">{config.cpu?.cores ?? 2} Cores</span>
+                      <span className="text-[#64748b]">RAM</span>
+                      <span className="text-white font-[family-name:var(--font-fira-code)]">{ramTotalGb} GB DDR4</span>
+                      <span className="text-[#64748b]">NVMe</span>
+                      <span className="text-white font-[family-name:var(--font-fira-code)]">{storageTotalGb} GB</span>
+                      <span className="text-[#64748b]">Bandwidth</span>
+                      <span className="text-white font-[family-name:var(--font-fira-code)]">{config.bandwidth?.label ?? "Không giới hạn"}</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+              </>
+            )}
+
+            {activeTab === "apps" && <DashboardAppsTab />}
+
+            {activeTab === "logs" && <DashboardLogsTab />}
+
+            {activeTab === "config" && (
+              <DashboardConfigTab
+                config={config}
+                ipAddress={ipAddress}
+                serverName={serverName}
+                osName={osName}
+                location={location}
+              />
+            )}
           </main>
         </div>
       </div>
 
+      {/* Mobile Bottom Navigation */}
       <nav className="lg:hidden fixed bottom-0 inset-x-0 z-40 border-t border-white/8 bg-[#080c14]/95 backdrop-blur-xl">
         <div className="grid grid-cols-4">
           {SIDEBAR_ITEMS.map((item) => (
             <button
-              key={item.label}
-              disabled={!item.active}
-              className={`flex flex-col items-center gap-1 py-3 text-xs ${
-                item.active ? "text-[#10b981]" : "text-[#64748b]"
+              key={item.id}
+              onClick={() => setActiveTab(item.id)}
+              className={`flex flex-col items-center gap-1 py-3 text-xs transition-colors cursor-pointer ${
+                activeTab === item.id ? "text-[#10b981] font-bold" : "text-[#94a3b8]"
               }`}
             >
               <item.icon className="h-5 w-5" />

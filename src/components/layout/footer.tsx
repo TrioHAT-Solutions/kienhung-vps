@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Server, Globe, Mail, Phone, MapPin, Shield, FileText } from "lucide-react";
+import { Server, Globe, Mail, Phone, MapPin } from "lucide-react";
 
 const footerLinks = {
   services: [
@@ -109,19 +109,6 @@ export function Footer() {
               <a href="mailto:kienhung.do1105@gmail.com" className="text-[#94a3b8] hover:text-white transition-colors">
                 <Mail className="h-5 w-5" />
               </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-8 pt-8 border-t border-white/8">
-          <div className="flex flex-wrap justify-center gap-4 mb-6">
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#1e293b] border border-white/8">
-              <Shield className="h-4 w-4 text-[#10b981]" />
-              <span className="text-xs text-[#94a3b8]">Datacenter Tier 3 tại TP.HCM</span>
-            </div>
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#1e293b] border border-white/8">
-              <FileText className="h-4 w-4 text-[#10b981]" />
-              <span className="text-xs text-[#94a3b8]">Hỗ trợ xuất hóa đơn VAT 100%</span>
             </div>
           </div>
         </div>
